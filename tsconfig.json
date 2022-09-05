@@ -17,17 +17,17 @@
     "jsx": "react-jsx",
     "baseUrl": "src",
     "paths": {
-      "@api/*": ["./api/*"],
-      "@assets/*": ["./assets/*"],
-      "@components/*": ["./components/*"],
-      "@config/*": ["./config/*"],
-      "@constants/*": ["./constants/*"],
-      "@helpers/*": ["./helpers/*"],
-      "@hooks/*": ["./hooks/*"],
-      "@slices/*": ["./slices/*"],
-      "@store/*": ["./store/*"],
-      "@translations/*": ["./translations/*"],
-      "@views/*": ["./views/*"]
+      "api/*": ["./api/*"],
+      "assets/*": ["./assets/*"],
+      "components/*": ["./components/*"],
+      "config/*": ["./config/*"],
+      "constants/*": ["./constants/*"],
+      "helpers/*": ["./helpers/*"],
+      "hooks/*": ["./hooks/*"],
+      "slices/*": ["./slices/*"],
+      "store/*": ["./store/*"],
+      "translations/*": ["./translations/*"],
+      "views/*": ["./views/*"]
     },
     "checkJs": false
   },

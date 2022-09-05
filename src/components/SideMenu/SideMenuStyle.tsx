@@ -1,12 +1,13 @@
 // LIBRARIES
 import styled from "styled-components";
+import { COLORS } from "constants/variables";
 
 export const SideMenuContainer = styled.div`
   padding: 0px 50px;
   height: 100%;
   display: flex;
   flex-direction: column;
-  background-color: #ffffff;
+  background-color: ${COLORS.primaryWhite};
   justify-content: space-between;
 `;
 

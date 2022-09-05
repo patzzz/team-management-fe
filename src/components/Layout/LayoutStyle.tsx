@@ -18,6 +18,7 @@ export const RightSideWrapper = styled.div`
   height: 100%;
   display: flex;
   flex-direction: column;
+  background-color: #f8f9fb;
 `;
 
 export const HeaderWrapper = styled.div`

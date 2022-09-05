@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React from "react";
 
 // STYLES
@@ -5,6 +6,7 @@ import { ButtonContainer, ButtonText, IconWrapper } from "./ButtonAtomStyle";
 
 // LIBRARIES
 import * as Icons from "@mui/icons-material";
+import { COLORS } from "constants/variables";
 
 // MISC
 
@@ -34,13 +36,13 @@ const ButtonAtom = (props) => {
   // REQUEST API FUNCTIONS
 
   // HANDLERS FUNCTIONS
-  console.log("selected", selected);
 
+  // @ts-ignore
   return (
     <ButtonContainer onClick={handleClick} selected={selected}>
       {hasIcon && (
         <IconWrapper>
-          <MuiIcon color={"#838383"} />
+          <MuiIcon color={COLORS.secondaryGray} />
         </IconWrapper>
       )}
       <ButtonText>{text}</ButtonText>

@@ -1,5 +1,6 @@
 // LIBRARIES
 import styled from "styled-components";
+import { COLORS } from "constants/variables";
 
 export const ProjectSummaryCardContainer = styled.div`
   background-color: "transparent";
@@ -29,7 +30,7 @@ export const Title = styled.p`
   font-weight: 700;
   font-size: 21px;
   text-align: left;
-  color: #343434;
+  color: ${COLORS.secondaryBlack};
   padding-bottom: 2px;
 `;
 
@@ -49,7 +50,7 @@ export const Deadline = styled.div`
   justify-content: center;
   align-items: center;
   background-color: #f3f3f4;
-  color: #838383;
+  color: ${COLORS.secondaryRed};
   font-weight: 800;
   font-size: 14px;
   margin-top: 20px;

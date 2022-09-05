@@ -1,8 +1,9 @@
 // LIBRARIES
 import styled from "styled-components";
+import { COLORS } from "constants/variables";
 
 export const DashboardCardContainer = styled.div`
-  background-color: #ffffff;
+  background-color: ${COLORS.primaryWhite};
   width: 500px;
   height: auto;
   max-height: 570px;
@@ -18,7 +19,7 @@ export const Title = styled.div`
   font-weight: 600;
   font-size: 25px;
   text-align: left;
-  color: #343434;
+  color: ${COLORS.secondaryBlack};
   margin-bottom: 30px;
 `;
 

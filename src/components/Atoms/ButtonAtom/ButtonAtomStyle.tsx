@@ -1,6 +1,8 @@
+// @ts-nocheck
 // LIBRARIES
 import styled, { css } from "styled-components";
 import Button from "@mui/material/Button";
+import { COLORS } from "constants/variables";
 
 export const ButtonContainer = styled(Button)(
   ({ selected }) => css`
@@ -8,10 +10,10 @@ export const ButtonContainer = styled(Button)(
       width: 200px;
       height: 45px;
       padding: 10px;
-      background-color: ${selected ? "#d3495a4f" : "transparent"};
+      background-color: ${selected ? COLORS.secondaryRed : "transparent"};
       margin-bottom: 15px;
       :hover {
-        background-color: #d3495a4f;
+        background-color: ${COLORS.secondaryRed};
       }
     }
   `
@@ -22,14 +24,14 @@ export const ButtonText = styled.p`
   text-transform: capitalize;
   width: 150px;
   text-align: left;
-  color: #838383;
+  color: ${COLORS.secondaryGray};
   font-weight: 500;
   font-size: 15px;
 `;
 
 export const IconWrapper = styled.div`
   width: 30px;
-  color: #838383;
+  color: ${COLORS.secondaryGray};
   display: flex;
   align-items: center;
 `;

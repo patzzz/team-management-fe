@@ -1,9 +1,10 @@
 // LIBRARIES
 import styled, { css } from "styled-components";
+import { COLORS } from "constants/variables";
 
 export const StatusCardContainer = styled.div(
   ({ color }) => css`
-    background-color: #ffffff;
+    background-color: ${COLORS.primaryWhite};
     width: 330px;
     height: 110px;
     border-radius: 15px;
@@ -36,14 +37,14 @@ export const Title = styled.div`
   font-weight: 600;
   font-size: 17px;
   text-align: left;
-  color: #343434;
+  color: ${COLORS.secondaryBlack};
   padding-bottom: 2px;
 `;
 
 export const Value = styled.div`
   font-size: 25px;
   text-align: left;
-  color: #343434;
+  color: ${COLORS.secondaryBlack};
   font-weight: 900;
   margin-right: 7px;
 `;

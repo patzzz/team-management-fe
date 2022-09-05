@@ -10,7 +10,7 @@ import {
 } from "./SideMenuStyle";
 
 // LIBRARIES
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 // MISC
 
@@ -24,6 +24,7 @@ const SideMenu = () => {
 
   // CONSTANTS USING LIBRARIES
   const location = useLocation();
+  const navigate = useNavigate();
 
   // CONSTANTS USING HOOKS
 
@@ -32,9 +33,11 @@ const SideMenu = () => {
   // USE EFFECT FUNCTION
 
   // REQUEST API FUNCTIONS
-  console.log("location", location.pathname);
 
   // HANDLERS FUNCTIONS
+  const handleNavigate = (path) => {
+    navigate(path);
+  };
 
   return (
     <SideMenuContainer>
@@ -46,18 +49,21 @@ const SideMenu = () => {
           hasIcon={true}
           iconType="Dashboard"
           selected={location.pathname === "/dashboard" ? true : false}
+          handleClick={() => handleNavigate("/dashboard")}
         />
         <ButtonAtom
           text={"Projects"}
           hasIcon={true}
           iconType="AccountTree"
           selected={location.pathname === "/projects" ? true : false}
+          handleClick={() => handleNavigate("/projects")}
         />
         <ButtonAtom
           text={"People"}
           hasIcon={true}
           iconType="People"
           selected={location.pathname === "/peoples" ? true : false}
+          handleClick={() => handleNavigate("/peoples")}
         />
       </SelectionsWrapper>
       <LogoutButtonWrapper>Log out</LogoutButtonWrapper>
