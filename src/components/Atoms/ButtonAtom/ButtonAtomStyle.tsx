@@ -26,7 +26,9 @@ export const ButtonContainer = styled(Button)(
       && {
         width: 150px;
         height: 45px;
-        background-color: ${COLORS.primaryWhite};
+        background-color: ${isSelected
+          ? COLORS.secondaryRed
+          : COLORS.primaryWhite};
         margin-bottom: 15px;
         text-align: center;
         box-shadow: 5px 5px 19px -3px rgba(0, 0, 0, 0.1);

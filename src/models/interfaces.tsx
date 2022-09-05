@@ -30,10 +30,16 @@ export enum ProjectStatusEnum {
   FINISHED = "FINISHED",
 }
 
+export enum PersonStatus {
+  AVAILABLE = "AVAILABLE",
+  ON_PROJECT = "ON_PROJECT",
+}
+
 export enum DashboardCardDataType {
   PROJECTS,
   PEOPLES,
 }
+
 export enum PersonPosition {
   FRONTEND = "Frontend ",
   BACKEND = "Backend",

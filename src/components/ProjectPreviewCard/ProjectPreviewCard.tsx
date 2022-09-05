@@ -10,7 +10,6 @@ import {
   ProjectPreviewCardDateText,
   ProjectPreviewCardDeadline,
   ProjectPreviewCardDesc,
-  ProjectPreviewCardStatus,
   ProjectPreviewCardTitle,
 } from "./ProjectPreviewCardStyle";
 
@@ -48,7 +47,7 @@ const ProjectPreviewCard = (props: IProps) => {
   return (
     <ProjectPreviewCardContainer>
       <ProjectPreviewCardTitle>{project.title}</ProjectPreviewCardTitle>
-      <ProjectPreviewCardStatus>{project.status}</ProjectPreviewCardStatus>
+      {/* <ProjectPreviewCardStatus>{project.status}</ProjectPreviewCardStatus> */}
       <ProjectPreviewCardDesc>{project.description}</ProjectPreviewCardDesc>
       <ProjectPreviewCardDateContainer>
         <ProjectPreviewCardDateText>

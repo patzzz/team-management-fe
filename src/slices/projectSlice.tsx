@@ -5,7 +5,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { IProject } from "models/interfaces";
 
 // API
-import { createProject, getProject } from "api/projectApi";
+import { createProject, getProject, getProjectsByStatus } from "api/projectApi";
 
 export interface IProjectInitialState {
   projects: Array<IProject>;
@@ -57,6 +57,20 @@ export const projectSlice = createSlice({
       state.project = action.payload;
     });
     builder.addCase(getProject.rejected, (state, action) => {
+      state.isLoading = false;
+      state.errorMessage = action.error.message;
+    });
+
+    // GET PROJECTS BY STATUS
+    builder.addCase(getProjectsByStatus.pending, (state, action) => {
+      state.isLoading = true;
+      state.errorMessage = "";
+    });
+    builder.addCase(getProjectsByStatus.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.projects = action.payload;
+    });
+    builder.addCase(getProjectsByStatus.rejected, (state, action) => {
       state.isLoading = false;
       state.errorMessage = action.error.message;
     });

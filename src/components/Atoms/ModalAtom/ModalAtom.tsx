@@ -1,7 +1,7 @@
 import React from "react";
 
 // STYLES
-import { ModalContainer } from "./ModalAtomStyle";
+// import { ModalContainer } from "./ModalAtomStyle";
 
 // LIBRARIES
 import { Modal } from "@mui/material";
@@ -12,10 +12,10 @@ import { ModalContentType } from "constants/variables";
 // REDUX
 import { useDispatch, useSelector } from "react-redux";
 import { modalProps, toggleModalState } from "slices/uiSlice";
-import Projects from "views/Projects/Projects";
-import ProjectsContent from "components/Atoms/ModalAtom/Content/ProjectsContent/ProjectsContent";
 
 // COMPONENTS
+// import Projects from "views/Projects/Projects";
+import ProjectsContent from "components/Atoms/ModalAtom/Content/ProjectsContent/ProjectsContent";
 
 const ModalAtom = () => {
   // PROPS

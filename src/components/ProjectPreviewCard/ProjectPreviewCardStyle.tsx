@@ -29,6 +29,7 @@ export const ProjectPreviewCardStatus = styled.span`
 `;
 export const ProjectPreviewCardDesc = styled.span`
   font-size: 16px;
+  height: 110px;
   display: inline;
   -webkit-line-clamp: 4;
   text-overflow: ellipsis;

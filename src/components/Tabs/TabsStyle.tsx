@@ -1,22 +1,22 @@
 // LIBRARIES
 import styled from "styled-components";
+
+// MISC
 import { COLORS } from "constants/variables";
 
-export const PersonsContainer = styled.div`
+export const ProjectsContainer = styled.div`
   display: flex;
   flex-direction: column;
   background-color: ${COLORS.backgroundColor};
   width: 100%;
   padding-left: 70px;
 `;
-
-export const PersonsListWrapper = styled.div`
+export const TabsContainer = styled.div`
   display: flex;
-  flex-wrap: wrap;
-  gap: 30px;
+  justify-content: space-between;
+  padding-right: 70px;
 `;
-
-export const PersonListElement = styled.div`
-  width: 350px;
-  height: 100px;
+export const TabsWrapper = styled.div`
+  display: flex;
+  gap: 10px;
 `;

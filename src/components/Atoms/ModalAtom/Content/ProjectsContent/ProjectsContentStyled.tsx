@@ -20,6 +20,7 @@ export const ProjectsContentInputContainer = styled.div`
 `;
 export const InputWrapper = styled.div`
   display: flex;
+  height: auto;
   flex-direction: column;
 `;
 export const DateWrapper = styled.div`

@@ -26,6 +26,10 @@ const ButtonAtom = (props: IProps) => {
     buttonStyle = "primary",
   } = props;
 
+  console.log("SELECTED:", selected);
+  console.log("text:", text);
+  console.log("________");
+
   // CONSTANTS USING LIBRARIES
 
   // CONSTANTS USING HOOKS

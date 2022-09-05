@@ -2,7 +2,14 @@
 import React, { useState } from "react";
 
 // STYLES
-import * as Styled from "./ProjectsContentStyled";
+import {
+  DateWrapper,
+  InputContainer,
+  InputWrapper,
+  ProjectsContentContainer,
+  ProjectsContentInputContainer,
+  TitleLabel,
+} from "./ProjectsContentStyled";
 
 // LIBRARIES
 import { useNavigate } from "react-router-dom";
@@ -17,6 +24,7 @@ import { IProjectForm } from "./ProjectsContentModel";
 
 // COMPONENTS
 import ButtonAtom from "components/Atoms/ButtonAtom/ButtonAtom";
+import { InputLabel } from "@mui/material";
 
 const ProjectsContent = () => {
   // PROPS
@@ -48,14 +56,14 @@ const ProjectsContent = () => {
   const handleChange = (value, name) => {
     setProjectForm({ ...projectForm, [name]: value });
   };
-  console.log("projectForm", projectForm);
+
   return (
-    <Styled.ProjectsContentContainer>
-      <Styled.TitleLabel>Create a project</Styled.TitleLabel>
-      <Styled.ProjectsContentInputContainer>
-        <Styled.InputWrapper>
-          <Styled.InputLabel>Title</Styled.InputLabel>
-          <Styled.InputContainer
+    <ProjectsContentContainer>
+      <TitleLabel>Create a project</TitleLabel>
+      <ProjectsContentInputContainer>
+        <InputWrapper>
+          <InputLabel>Title</InputLabel>
+          <InputContainer
             name="title"
             fullWidth
             value={projectForm.title}
@@ -63,10 +71,10 @@ const ProjectsContent = () => {
               handleChange(event.target.value, event.target.name)
             }
           />
-        </Styled.InputWrapper>
-        <Styled.InputWrapper>
-          <Styled.InputLabel>Status</Styled.InputLabel>
-          <Styled.InputContainer
+        </InputWrapper>
+        <InputWrapper>
+          <InputLabel>Status</InputLabel>
+          <InputContainer
             name="status"
             fullWidth
             value={projectForm.status}
@@ -74,10 +82,10 @@ const ProjectsContent = () => {
               handleChange(event.target.value, event.target.name)
             }
           />
-        </Styled.InputWrapper>
-        <Styled.InputWrapper>
-          <Styled.InputLabel>Description</Styled.InputLabel>
-          <Styled.InputContainer
+        </InputWrapper>
+        <InputWrapper>
+          <InputLabel>Description</InputLabel>
+          <InputContainer
             name="description"
             fullWidth
             value={projectForm.description}
@@ -85,10 +93,10 @@ const ProjectsContent = () => {
               handleChange(event.target.value, event.target.name)
             }
           />
-        </Styled.InputWrapper>
+        </InputWrapper>
 
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
-          <Styled.DateWrapper>
+          <DateWrapper>
             <DatePicker
               label="Start date"
               value={projectForm.startDate}
@@ -108,15 +116,15 @@ const ProjectsContent = () => {
               onChange={(event) => handleChange(event, "deadline")}
               animateYearScrolling
             />
-          </Styled.DateWrapper>
+          </DateWrapper>
         </MuiPickersUtilsProvider>
-      </Styled.ProjectsContentInputContainer>
+      </ProjectsContentInputContainer>
       <ButtonAtom
         text={"Create"}
         handleClick={handleCreateProject}
         buttonStyle={"secondary"}
       />
-    </Styled.ProjectsContentContainer>
+    </ProjectsContentContainer>
   );
 };
 

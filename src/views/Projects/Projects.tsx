@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 // STYLES
 import {
@@ -12,12 +12,13 @@ import {
 // LIBRARIES
 
 // MISC
-import { projectsList } from "mocks/projectsMock";
 import { ProjectStatusEnum } from "models/interfaces";
 
 // REDUX
-import { useDispatch } from "react-redux";
 import { toggleModalState } from "slices/uiSlice";
+import { useAppDispatch, useAppSelector } from "hooks/reduxHooks";
+import { getProjectsByStatus } from "api/projectApi";
+import { projects } from "slices/projectSlice";
 
 // COMPONENTS
 import ProjectPreviewCard from "components/ProjectPreviewCard/ProjectPreviewCard";
@@ -28,7 +29,8 @@ const Projects = () => {
   // PROPS
 
   // CONSTANTS USING LIBRARIES
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
+  const projectsData = useAppSelector(projects);
 
   // CONSTANTS USING HOOKS
   const [selectedTab, setSelectedTab] = useState<ProjectStatusEnum>(
@@ -38,6 +40,15 @@ const Projects = () => {
   // GENERAL CONSTANTS
 
   // USE EFFECT FUNCTION
+  useEffect(() => {
+    dispatch(getProjectsByStatus(selectedTab));
+    // eslint-disable-next-line
+  }, []);
+
+  useEffect(() => {
+    dispatch(getProjectsByStatus(selectedTab));
+    // eslint-disable-next-line
+  }, [selectedTab]);
 
   // REQUEST API FUNCTIONS
 
@@ -82,16 +93,17 @@ const Projects = () => {
         />
       </ProjectsFilterContainer>
       <ProjectsListWrapper>
-        {projectsList?.map((project, index) => {
-          return (
-            <ProjectsListElement>
-              <ProjectPreviewCard
-                project={project}
-                key={`project-list--${index}`}
-              />
-            </ProjectsListElement>
-          );
-        })}
+        {projectsData?.length > 0 &&
+          projectsData?.map((project, index) => {
+            return (
+              <ProjectsListElement>
+                <ProjectPreviewCard
+                  project={project}
+                  key={`project-list--${index}`}
+                />
+              </ProjectsListElement>
+            );
+          })}
       </ProjectsListWrapper>
       <ModalAtom />
     </ProjectsContainer>

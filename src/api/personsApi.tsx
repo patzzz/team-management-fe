@@ -92,3 +92,17 @@ export const assignOrUnassignPerson = createAsyncThunk(
     }
   }
 );
+
+export const getPersonsByAvailabilityStatus = createAsyncThunk(
+  "person/getPersonsByAvailabilityStatus",
+  async (status: string, { rejectWithValue }) => {
+    try {
+      const response = await REST.get(
+        `/person/getPersonsByAvailabilityStatus?status=${status}`
+      );
+      return response.data;
+    } catch (err) {
+      return rejectWithValue(err.response.data);
+    }
+  }
+);
