@@ -1,5 +1,7 @@
 // LIBRARIES
 import styled from "styled-components";
+
+// MISC
 import { COLORS } from "constants/variables";
 
 export const SideMenuContainer = styled.div`

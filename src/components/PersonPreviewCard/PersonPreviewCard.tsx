@@ -26,7 +26,9 @@ const PersonPreviewCard = (props: IProps) => {
     firstName = "",
     lastName = "",
     position = "",
+    // eslint-disable-next-line
     isAvailable = false,
+    // eslint-disable-next-line
     assignedProject = {},
   } = props;
   // CONSTANTS USING LIBRARIES

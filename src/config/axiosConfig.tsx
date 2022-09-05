@@ -6,6 +6,7 @@ const baseURL = process.env.REACT_APP_SERVER_URL
 
 // const accessToken = lscache.get('accessToken')
 
+// eslint-disable-next-line
 const AuthHeader = () => {
   // if (accessToken) {
   //   return {
