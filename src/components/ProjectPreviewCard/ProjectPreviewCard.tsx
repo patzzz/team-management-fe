@@ -1,17 +1,21 @@
 import React from "react";
 
 // STYLES
-import * as Style from "./ProjectPreviewCardStyle";
-import { IProps } from "components/ProjectPreviewCard/ProjectPreviewCardModel";
 
 // LIBRARIES
 import moment from "moment/moment";
 import {
+  ProjectPreviewCardContainer,
+  ProjectPreviewCardDateContainer,
   ProjectPreviewCardDateText,
   ProjectPreviewCardDeadline,
+  ProjectPreviewCardDesc,
+  ProjectPreviewCardStatus,
+  ProjectPreviewCardTitle,
 } from "./ProjectPreviewCardStyle";
 
 // MISC
+import { IProps } from "components/ProjectPreviewCard/ProjectPreviewCardModel";
 
 // REDUX
 
@@ -42,29 +46,23 @@ const ProjectPreviewCard = (props: IProps) => {
   // HANDLERS FUNCTIONS
 
   return (
-    <Style.ProjectPreviewCardContainer>
-      <Style.ProjectPreviewCardTitle>
-        {project.title}
-      </Style.ProjectPreviewCardTitle>
-      <Style.ProjectPreviewCardStatus>
-        {project.status}
-      </Style.ProjectPreviewCardStatus>
-      <Style.ProjectPreviewCardDesc>
-        {project.description}
-      </Style.ProjectPreviewCardDesc>
-      <Style.ProjectPreviewCardDateContainer>
-        <Style.ProjectPreviewCardDateText>
-          Start: {moment(project.startDate).format("DD-MM-YYYY")}
-        </Style.ProjectPreviewCardDateText>
-        <Style.ProjectPreviewCardDateText>
-          End: {moment(project.endDate).format("DD-MM-YYYY")}
-        </Style.ProjectPreviewCardDateText>
-      </Style.ProjectPreviewCardDateContainer>
+    <ProjectPreviewCardContainer>
+      <ProjectPreviewCardTitle>{project.title}</ProjectPreviewCardTitle>
+      <ProjectPreviewCardStatus>{project.status}</ProjectPreviewCardStatus>
+      <ProjectPreviewCardDesc>{project.description}</ProjectPreviewCardDesc>
+      <ProjectPreviewCardDateContainer>
+        <ProjectPreviewCardDateText>
+          Start: {moment(project.startDate).format("DD/MM/YYYY")}
+        </ProjectPreviewCardDateText>
+        <ProjectPreviewCardDateText>
+          End: {moment(project.endDate).format("DD/MM/YYYY")}
+        </ProjectPreviewCardDateText>
+      </ProjectPreviewCardDateContainer>
 
-      <Style.ProjectPreviewCardDeadline>
-        Deadline: {moment(project.deadline).format("DD-MM-YYYY")}
-      </Style.ProjectPreviewCardDeadline>
-    </Style.ProjectPreviewCardContainer>
+      <ProjectPreviewCardDeadline>
+        Deadline: {moment(project.deadline).format("DD/MM/YYYY")}
+      </ProjectPreviewCardDeadline>
+    </ProjectPreviewCardContainer>
   );
 };
 
