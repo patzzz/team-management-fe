@@ -16,6 +16,7 @@ export const LogoWrapper = styled.div`
   font-size: 40px;
   text-align: center;
   margin-top: 33px;
+  color: ${COLORS.secondaryBlack};
 `;
 
 export const MenuTitle = styled.div`

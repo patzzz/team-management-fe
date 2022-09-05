@@ -7,6 +7,7 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import Layout from "../components/Layout/Layout";
 import Dashboard from "views/Dashboard/Dashboard";
 import Projects from "views/Projects/Projects";
+import Persons from "views/Persons/Persons";
 
 const AppRoutes = () => {
   // CONSTANTS USING HOOKS
@@ -36,10 +37,10 @@ const AppRoutes = () => {
         }
       />
       <Route
-        path="/people"
+        path="/persons"
         element={
           <Layout>
-            <Dashboard />
+            <Persons />
           </Layout>
         }
       />

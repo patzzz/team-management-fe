@@ -2,7 +2,7 @@ import axios from "axios";
 
 const baseURL = process.env.REACT_APP_SERVER_URL
   ? process.env.REACT_APP_SERVER_URL
-  : "https://reqres.in/api";
+  : "http://localhost:8080/manager/api/";
 
 // const accessToken = lscache.get('accessToken')
 
