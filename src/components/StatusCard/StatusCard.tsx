@@ -38,7 +38,7 @@ const StatusCard = (props) => {
   return (
     <StatusCardContainer color={color}>
       <IconWrapper color={color}>
-        <MuiIcon />
+        <MuiIcon style={{ fontSize: "34px" }} />
       </IconWrapper>
       <DetailsWraper>
         <Value>{value}</Value>

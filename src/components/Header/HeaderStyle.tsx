@@ -15,8 +15,10 @@ export const HeaderTitle = styled.div`
   font-size: 28px;
   text-align: left;
   color: #343434;
-  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
   margin-left: 70px;
+  height: 100%;
 `;
 
 export const HeaderActionsWrapper = styled.div`
