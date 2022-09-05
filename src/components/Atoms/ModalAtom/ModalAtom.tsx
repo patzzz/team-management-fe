@@ -47,7 +47,7 @@ const ModalAtom = () => {
       case ModalContentType.PROJECTS:
         return <div>Project</div>;
       default:
-        break;
+        return <div>No Content Available</div>;
     }
   };
 

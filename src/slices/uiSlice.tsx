@@ -15,7 +15,7 @@ const initialState: IUIInitialState = {
   errorMessage: "",
   modalProps: {
     isVisible: false,
-    content: "DASHBOARD",
+    content: "dashboard",
   },
 };
 
