@@ -44,3 +44,9 @@ export enum DashboardCardDataType {
   PROJECTS,
   PEOPLES,
 }
+export enum PeoplePositions {
+  FRONTEND = "Frontend ",
+  BACKEND = "Backend",
+  DESIGN = "Ui/Ux Design",
+  DEVOPS = "DevOps",
+}

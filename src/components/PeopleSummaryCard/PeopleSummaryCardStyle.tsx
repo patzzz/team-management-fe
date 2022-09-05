@@ -1,13 +1,13 @@
 // LIBRARIES
 import styled from "styled-components";
 
-export const ProjectSummaryCardContainer = styled.div`
+export const PeopleSummaryCardContainer = styled.div`
   background-color: "transparent";
   width: 100%;
-  height: 100px;
+  height: 65px;
   display: flex;
   flex-direction: row;
-  margin: 10px 0;
+  margin-top: 10px;
   cursor: pointer;
 `;
 
@@ -41,7 +41,7 @@ export const Description = styled.p`
   padding-bottom: 2px;
 `;
 
-export const Deadline = styled.div`
+export const Position = styled.div`
   width: 120px;
   height: 3 0px;
   border-radius: 3px;
@@ -52,12 +52,11 @@ export const Deadline = styled.div`
   color: #838383;
   font-weight: 800;
   font-size: 14px;
-  margin-top: 20px;
+  margin-top: 5px;
 `;
 
 export const Delimiter = styled.div`
   width: 100%;
   height: 2px;
   background-color: #e9edf3;
-  margin: 10px 0;
 `;
