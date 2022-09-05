@@ -1,10 +1,11 @@
 // LIBRARIES
 import styled from "styled-components";
+import { COLORS } from "constants/variables";
 
 export const HeaderContainer = styled.div`
   width: 85vw;
   height: 100%;
-  background-color: #f8f9fb;
+  background-color: ${COLORS.backgroundColor};
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -14,7 +15,7 @@ export const HeaderTitle = styled.div`
   font-weight: 700;
   font-size: 28px;
   text-align: left;
-  color: #343434;
+  color: ${COLORS.secondaryBlack};
   display: flex;
   align-items: center;
   margin-left: 70px;
@@ -40,6 +41,6 @@ export const ProfileName = styled.div`
   font-weight: 700;
   font-size: 18px;
   text-align: left;
-  color: #343434;
+  color: ${COLORS.secondaryBlack};
   margin-right: 20px;
 `;

@@ -13,6 +13,7 @@ import {
 
 // MISC
 import photo from "assets/profileImage.png";
+import { useLocation } from "react-router-dom";
 
 // REDUX
 
@@ -22,6 +23,7 @@ const Header = () => {
   // PROPS
 
   // CONSTANTS USING LIBRARIES
+  const location = useLocation();
 
   // CONSTANTS USING HOOKS
 
@@ -35,7 +37,7 @@ const Header = () => {
 
   return (
     <HeaderContainer>
-      <HeaderTitle>Dashboard</HeaderTitle>
+      <HeaderTitle>{location.pathname.toUpperCase().split("/")[1]}</HeaderTitle>
       <HeaderActionsWrapper>
         <ProfileName>Andrei P.</ProfileName>
         <ProfileImage src={photo} />

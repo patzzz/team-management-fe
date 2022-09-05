@@ -2,6 +2,7 @@ import React from "react";
 
 // STYLES
 import "./ProjectsStyle.tsx";
+import * as Styled from "views/Projects/ProjectsStyle";
 
 // LIBRARIES
 
@@ -10,6 +11,8 @@ import "./ProjectsStyle.tsx";
 // REDUX
 
 // COMPONENTS
+import ProjectPreviewCard from "components/ProjectPreviewCard/ProjectPreviewCard";
+import { projectsList } from "../../mocks/projectsMock";
 
 const Projects = () => {
   // PROPS
@@ -26,7 +29,22 @@ const Projects = () => {
 
   // HANDLERS FUNCTIONS
 
-  return <div className="page-projects-container"></div>;
+  return (
+    <Styled.ProjectsContainer>
+      <Styled.ProjectsListWrapper>
+        {projectsList?.map((project, index) => {
+          return (
+            <Styled.ProjectsListElement>
+              <ProjectPreviewCard
+                project={project}
+                key={`project-list--${index}`}
+              />
+            </Styled.ProjectsListElement>
+          );
+        })}
+      </Styled.ProjectsListWrapper>
+    </Styled.ProjectsContainer>
+  );
 };
 
 export default Projects;

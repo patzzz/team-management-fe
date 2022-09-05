@@ -1,12 +1,13 @@
 // LIBRARIES
 import styled from "styled-components";
+import { COLORS } from "constants/variables";
 
 export const DashboardContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
   height: 100%;
-  background-color: #f8f9fb;
+  background-color: ${COLORS.backgroundColor};
   padding: 0 70px;
 `;
 
