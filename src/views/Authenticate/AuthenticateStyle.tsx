@@ -1,4 +1,5 @@
 // LIBRARIES
+// @ts-nocheck
 import styled, { css } from "styled-components";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
