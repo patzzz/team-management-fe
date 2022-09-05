@@ -16,6 +16,7 @@ import { DashboardCardDataType } from "models/interfaces";
 
 // COMPONENTS
 import ProjectSummaryCard from "components/ProjectSummaryCard/ProjectSummaryCard";
+import PeopleSummaryCard from "components/PeopleSummaryCard/PeopleSummaryCard";
 
 const DashboardCard = (props) => {
   // PROPS
@@ -41,7 +42,7 @@ const DashboardCard = (props) => {
       case DashboardCardDataType.PROJECTS:
         return data.map((project) => <ProjectSummaryCard project={project} />);
       default:
-        break;
+        return data.map((people) => <PeopleSummaryCard people={people} />);
     }
   };
 

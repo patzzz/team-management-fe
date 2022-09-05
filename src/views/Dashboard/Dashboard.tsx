@@ -10,7 +10,11 @@ import {
 // LIBRARIES
 
 // MISC
-import { DashboardCardDataType, ProjectStatusEnum } from "models/interfaces";
+import {
+  DashboardCardDataType,
+  PeoplePositions,
+  ProjectStatusEnum,
+} from "models/interfaces";
 
 // REDUX
 
@@ -36,8 +40,15 @@ const Dashboard = () => {
     deadline: "2022-09-02T06:27:59.094Z",
   };
 
-  const projectMocks = [projectMock];
-  // const projectMocks = [projectMock, projectMock, projectMock, projectMock];
+  const peopleMock = {
+    id: 1,
+    firstName: "Andrei",
+    lastName: "Pata",
+    position: PeoplePositions.FRONTEND,
+  };
+
+  const projectMocks = [projectMock, projectMock, projectMock, projectMock];
+  const peoplesMock = [peopleMock, peopleMock, peopleMock, peopleMock];
 
   // USE EFFECT FUNCTION
 
@@ -87,7 +98,7 @@ const Dashboard = () => {
         />
         <DashboardCard
           title="Available peoples"
-          data={projectMocks}
+          data={peoplesMock}
           dataType={DashboardCardDataType.PEOPLES}
         />
       </DashboardCardsWrapper>
