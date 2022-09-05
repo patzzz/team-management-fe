@@ -12,7 +12,9 @@ import * as Styled from "views/Projects/ProjectsStyle";
 
 // COMPONENTS
 import ProjectPreviewCard from "components/ProjectPreviewCard/ProjectPreviewCard";
-import { projectsList } from "../../mocks/projectsMock";
+import { projectsList } from "mocks/projectsMock";
+import ModalAtom from "components/Atoms/ModalAtom/ModalAtom";
+import ButtonAtom from "components/Atoms/ButtonAtom/ButtonAtom";
 
 const Projects = () => {
   // PROPS
@@ -31,6 +33,7 @@ const Projects = () => {
 
   return (
     <Styled.ProjectsContainer>
+      <ButtonAtom />
       <Styled.ProjectsListWrapper>
         {projectsList?.map((project, index) => {
           return (
@@ -43,6 +46,7 @@ const Projects = () => {
           );
         })}
       </Styled.ProjectsListWrapper>
+      {/*<ModalAtom />*/}
     </Styled.ProjectsContainer>
   );
 };

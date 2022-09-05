@@ -5,3 +5,9 @@ export const COLORS = {
   secondaryRed: "#d3495a4f",
   secondaryBlack: "#343434",
 };
+
+export const ModalContentType = {
+  EMPTY: "empty",
+  DASHBOARD: "dashboard",
+  PROJECTS: "projects",
+};

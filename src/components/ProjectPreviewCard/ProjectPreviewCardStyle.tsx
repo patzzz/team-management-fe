@@ -11,7 +11,8 @@ export const ProjectPreviewCardContainer = styled.div`
   display: flex;
   flex-direction: column;
   cursor: pointer;
-  gap: 10px;
+  gap: 20px;
+  overflow: auto;
 `;
 export const ProjectPreviewCardTitle = styled.span`
   font-size: 20px;
@@ -21,4 +22,26 @@ export const ProjectPreviewCardStatus = styled.span`
   font-size: 18px;
   text-transform: uppercase;
   color: ${COLORS.secondaryRed};
+`;
+export const ProjectPreviewCardDesc = styled.span`
+  font-size: 16px;
+  display: inline;
+  -webkit-line-clamp: 4;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  word-wrap: break-word;
+`;
+export const ProjectPreviewCardDateContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+export const ProjectPreviewCardDateText = styled.span`
+  font-size: 13px;
+  color: ${COLORS.secondaryGray};
+`;
+export const ProjectPreviewCardDeadline = styled.span`
+  font-size: 15px;
+  color: ${COLORS.secondaryGray};
 `;
