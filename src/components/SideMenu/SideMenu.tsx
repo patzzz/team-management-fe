@@ -59,11 +59,11 @@ const SideMenu = () => {
           handleClick={() => handleNavigate("/projects")}
         />
         <ButtonAtom
-          text={"People"}
+          text={"Persons"}
           hasIcon={true}
           iconType="People"
-          selected={location.pathname === "/peoples" ? true : false}
-          handleClick={() => handleNavigate("/peoples")}
+          selected={location.pathname === "/persons" ? true : false}
+          handleClick={() => handleNavigate("/persons")}
         />
       </SelectionsWrapper>
       <LogoutButtonWrapper>Log out</LogoutButtonWrapper>

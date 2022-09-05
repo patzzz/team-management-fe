@@ -11,12 +11,14 @@ import projectSlice from "slices/projectSlice";
 import sessionSlice from "slices/sessionSlice";
 import statisticsSlice from "slices/statisticsSlice";
 import uiSlice from "slices/uiSlice";
+import personSlice from "slices/personSlice";
 
 const reducers = combineReducers({
   calendar: calendarSlice,
   project: projectSlice,
   session: sessionSlice,
   statistics: statisticsSlice,
+  person: personSlice,
   ui: uiSlice,
 });
 
@@ -31,10 +33,13 @@ const persistConfig = {
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-const store = configureStore({
+export const store = configureStore({
   reducer: persistedReducer,
   // devTools: process.env.NODE_ENV !== 'production',
   middleware: [thunk],
 });
 
-export default store;
+// Infer the `RootState` and `AppDispatch` types from the store itself
+export type RootState = ReturnType<typeof store.getState>;
+// Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
+export type AppDispatch = typeof store.dispatch;
