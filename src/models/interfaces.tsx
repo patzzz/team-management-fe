@@ -11,7 +11,7 @@ export interface IProject {
   id: number;
   title: string;
   description: string;
-  status: ProjectStatusEnum;
+  status: string;
   startDate: Date;
   endDate: Date;
   deadline: Date;
@@ -27,7 +27,6 @@ export interface IPerson {
 export enum ProjectStatusEnum {
   IN_PROGRESS = "IN_PROGRESS",
   PENDING = "PENDING",
-  ON_HOLD = "ON_HOLD",
   FINISHED = "FINISHED",
 }
 

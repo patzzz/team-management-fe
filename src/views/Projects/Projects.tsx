@@ -1,22 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 
 // STYLES
-import "./ProjectsStyle.tsx";
-import * as Styled from "views/Projects/ProjectsStyle";
+import {
+  ProjectsContainer,
+  ProjectsFilterContainer,
+  ProjectsFilterWrapper,
+  ProjectsListElement,
+  ProjectsListWrapper,
+} from "./ProjectsStyle";
 
 // LIBRARIES
 
 // MISC
 import { projectsList } from "mocks/projectsMock";
+import { ProjectStatusEnum } from "models/interfaces";
 
 // REDUX
 import { useDispatch } from "react-redux";
+import { toggleModalState } from "slices/uiSlice";
 
 // COMPONENTS
 import ProjectPreviewCard from "components/ProjectPreviewCard/ProjectPreviewCard";
 import ModalAtom from "components/Atoms/ModalAtom/ModalAtom";
 import ButtonAtom from "components/Atoms/ButtonAtom/ButtonAtom";
-import { toggleModalState } from "slices/uiSlice";
 
 const Projects = () => {
   // PROPS
@@ -25,6 +31,9 @@ const Projects = () => {
   const dispatch = useDispatch();
 
   // CONSTANTS USING HOOKS
+  const [selectedTab, setSelectedTab] = useState<ProjectStatusEnum>(
+    ProjectStatusEnum.IN_PROGRESS
+  );
 
   // GENERAL CONSTANTS
 
@@ -34,52 +43,58 @@ const Projects = () => {
 
   // HANDLERS FUNCTIONS
   const handleFilterClick = (event) => {
-    // console.log("event", event);
+    setSelectedTab(event);
   };
+
   const handleOpenModal = () => {
     dispatch(toggleModalState({ isVisible: true, content: "projects" }));
   };
 
   return (
-    <Styled.ProjectsContainer>
-      <Styled.ProjectsFilterContainer>
-        <Styled.ProjectsFilterWrapper>
+    <ProjectsContainer>
+      <ProjectsFilterContainer>
+        <ProjectsFilterWrapper>
           <ButtonAtom
-            text="Test"
+            text="In progress"
             buttonStyle={"secondary"}
-            handleClick={() => handleFilterClick("event1")}
+            selected={
+              selectedTab === ProjectStatusEnum.IN_PROGRESS ? true : false
+            }
+            handleClick={() => handleFilterClick(ProjectStatusEnum.IN_PROGRESS)}
           />
           <ButtonAtom
-            text="Test"
+            text="Pending"
             buttonStyle={"secondary"}
-            handleClick={() => handleFilterClick("event2")}
+            selected={selectedTab === ProjectStatusEnum.PENDING ? true : false}
+            handleClick={() => handleFilterClick(ProjectStatusEnum.PENDING)}
           />
           <ButtonAtom
-            text="Test"
+            text="Done"
             buttonStyle={"secondary"}
-            handleClick={() => handleFilterClick("event3")}
+            selected={selectedTab === ProjectStatusEnum.FINISHED ? true : false}
+            handleClick={() => handleFilterClick(ProjectStatusEnum.FINISHED)}
           />
-        </Styled.ProjectsFilterWrapper>
+        </ProjectsFilterWrapper>
         <ButtonAtom
           text="Add Project"
           buttonStyle={"secondary"}
           handleClick={handleOpenModal}
         />
-      </Styled.ProjectsFilterContainer>
-      <Styled.ProjectsListWrapper>
+      </ProjectsFilterContainer>
+      <ProjectsListWrapper>
         {projectsList?.map((project, index) => {
           return (
-            <Styled.ProjectsListElement>
+            <ProjectsListElement>
               <ProjectPreviewCard
                 project={project}
                 key={`project-list--${index}`}
               />
-            </Styled.ProjectsListElement>
+            </ProjectsListElement>
           );
         })}
-      </Styled.ProjectsListWrapper>
+      </ProjectsListWrapper>
       <ModalAtom />
-    </Styled.ProjectsContainer>
+    </ProjectsContainer>
   );
 };
 
