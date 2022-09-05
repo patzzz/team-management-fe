@@ -35,6 +35,7 @@ const Dashboard = () => {
   // USE EFFECT FUNCTION
   useEffect(() => {
     dispatch(getStatistics());
+    // eslint-disable-next-line
   }, []);
 
   // REQUEST API FUNCTIONS

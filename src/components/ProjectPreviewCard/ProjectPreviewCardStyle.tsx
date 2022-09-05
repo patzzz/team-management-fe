@@ -1,4 +1,7 @@
+// LIBRARIES
 import styled from "styled-components";
+
+// MISC
 import { COLORS } from "constants/variables";
 
 export const ProjectPreviewCardContainer = styled.div`
@@ -15,7 +18,8 @@ export const ProjectPreviewCardContainer = styled.div`
   overflow: auto;
 `;
 export const ProjectPreviewCardTitle = styled.span`
-  font-size: 20px;
+  font-size: 23px;
+  font-weight: 700;
   text-transform: capitalize;
 `;
 export const ProjectPreviewCardStatus = styled.span`
@@ -40,8 +44,10 @@ export const ProjectPreviewCardDateContainer = styled.div`
 export const ProjectPreviewCardDateText = styled.span`
   font-size: 13px;
   color: ${COLORS.secondaryGray};
+  font-weight: 700;
 `;
 export const ProjectPreviewCardDeadline = styled.span`
   font-size: 15px;
-  color: ${COLORS.secondaryGray};
+  font-weight: 700;
+  color: #d3495a;
 `;

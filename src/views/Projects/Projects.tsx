@@ -7,13 +7,13 @@ import * as Styled from "views/Projects/ProjectsStyle";
 // LIBRARIES
 
 // MISC
+import { projectsList } from "mocks/projectsMock";
 
 // REDUX
 import { useDispatch } from "react-redux";
 
 // COMPONENTS
 import ProjectPreviewCard from "components/ProjectPreviewCard/ProjectPreviewCard";
-import { projectsList } from "mocks/projectsMock";
 import ModalAtom from "components/Atoms/ModalAtom/ModalAtom";
 import ButtonAtom from "components/Atoms/ButtonAtom/ButtonAtom";
 import { toggleModalState } from "slices/uiSlice";

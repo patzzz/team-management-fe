@@ -8,6 +8,7 @@ import Layout from "../components/Layout/Layout";
 import Dashboard from "views/Dashboard/Dashboard";
 import Projects from "views/Projects/Projects";
 import Persons from "views/Persons/Persons";
+import Authenticate from "views/Authenticate/Authenticate";
 
 const AppRoutes = () => {
   // CONSTANTS USING HOOKS
@@ -20,6 +21,7 @@ const AppRoutes = () => {
 
   return (
     <Routes>
+      <Route path="/" element={<Authenticate />} />
       <Route
         path="/dashboard"
         element={
