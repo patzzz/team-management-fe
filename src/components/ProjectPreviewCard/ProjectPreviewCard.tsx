@@ -3,9 +3,13 @@ import React from "react";
 // STYLES
 import * as Style from "./ProjectPreviewCardStyle";
 import { IProps } from "components/ProjectPreviewCard/ProjectPreviewCardModel";
-import { ProjectPreviewCardStatus } from "./ProjectPreviewCardStyle";
 
 // LIBRARIES
+import moment from "moment/moment";
+import {
+  ProjectPreviewCardDateText,
+  ProjectPreviewCardDeadline,
+} from "./ProjectPreviewCardStyle";
 
 // MISC
 
@@ -22,7 +26,7 @@ const ProjectPreviewCard = (props: IProps) => {
       status: "",
       startDate: "",
       endDate: "",
-      deadLine: "",
+      deadline: "",
     },
   } = props;
   // CONSTANTS USING LIBRARIES
@@ -45,6 +49,21 @@ const ProjectPreviewCard = (props: IProps) => {
       <Style.ProjectPreviewCardStatus>
         {project.status}
       </Style.ProjectPreviewCardStatus>
+      <Style.ProjectPreviewCardDesc>
+        {project.description}
+      </Style.ProjectPreviewCardDesc>
+      <Style.ProjectPreviewCardDateContainer>
+        <Style.ProjectPreviewCardDateText>
+          Start: {moment(project.startDate).format("DD-MM-YYYY")}
+        </Style.ProjectPreviewCardDateText>
+        <Style.ProjectPreviewCardDateText>
+          End: {moment(project.endDate).format("DD-MM-YYYY")}
+        </Style.ProjectPreviewCardDateText>
+      </Style.ProjectPreviewCardDateContainer>
+
+      <Style.ProjectPreviewCardDeadline>
+        Deadline: {moment(project.deadline).format("DD-MM-YYYY")}
+      </Style.ProjectPreviewCardDeadline>
     </Style.ProjectPreviewCardContainer>
   );
 };

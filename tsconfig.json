@@ -28,7 +28,8 @@
       "slices/*": ["./slices/*"],
       "store/*": ["./store/*"],
       "translations/*": ["./translations/*"],
-      "views/*": ["./views/*"]
+      "views/*": ["./views/*"],
+      "mocks/*": ["./mocks/*"]
     },
     "checkJs": false
   },
