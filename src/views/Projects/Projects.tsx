@@ -46,7 +46,7 @@ const Projects = () => {
           );
         })}
       </Styled.ProjectsListWrapper>
-      {/*<ModalAtom />*/}
+      <ModalAtom />
     </Styled.ProjectsContainer>
   );
 };
