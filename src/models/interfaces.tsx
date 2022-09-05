@@ -17,20 +17,11 @@ export interface IProject {
   deadline: Date;
 }
 
-export interface IMeeting {
+export interface IPerson {
   id: number;
-  title: string;
-  description: string;
-  startDate: Date;
-  endDate: Date;
-}
-
-export interface IWorkedInterval {
-  id: number;
-  projectId: number;
-  startDate: Date;
-  endDate: Date;
-  totalWorkedHours: number;
+  firstName: string;
+  lastName: string;
+  position: PersonPosition;
 }
 
 export enum ProjectStatusEnum {
@@ -44,7 +35,7 @@ export enum DashboardCardDataType {
   PROJECTS,
   PEOPLES,
 }
-export enum PeoplePositions {
+export enum PersonPosition {
   FRONTEND = "Frontend ",
   BACKEND = "Backend",
   DESIGN = "Ui/Ux Design",

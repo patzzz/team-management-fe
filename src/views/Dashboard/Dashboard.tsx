@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React from "react";
 
 // STYLES
@@ -12,11 +13,13 @@ import {
 // MISC
 import {
   DashboardCardDataType,
-  PeoplePositions,
+  PersonPosition,
   ProjectStatusEnum,
 } from "models/interfaces";
 
 // REDUX
+// import { getStatistics } from "api/statisticsApi";
+// import { AppDispatch } from "store/store";
 
 // COMPONENTS
 import DashboardCard from "components/DashboardCard/DashboardCard";
@@ -26,6 +29,7 @@ const Dashboard = () => {
   // PROPS
 
   // CONSTANTS USING LIBRARIES
+  // const dispatch = useAppDispatch<AppDispatch>();
 
   // CONSTANTS USING HOOKS
 
@@ -44,13 +48,16 @@ const Dashboard = () => {
     id: 1,
     firstName: "Andrei",
     lastName: "Pata",
-    position: PeoplePositions.FRONTEND,
+    position: PersonPosition.FRONTEND,
   };
 
   const projectMocks = [projectMock, projectMock, projectMock, projectMock];
   const peoplesMock = [peopleMock, peopleMock, peopleMock, peopleMock];
 
   // USE EFFECT FUNCTION
+  // useEffect(() => {
+  //   dispatch(getStatistics());
+  // }, []);
 
   // REQUEST API FUNCTIONS
 
@@ -78,7 +85,7 @@ const Dashboard = () => {
           value={10}
         />
         <StatusCard
-          title="available people"
+          title="available persons"
           iconType="People"
           color="#f4772f"
           value={4}
@@ -97,7 +104,7 @@ const Dashboard = () => {
           dataType={DashboardCardDataType.PROJECTS}
         />
         <DashboardCard
-          title="Available peoples"
+          title="Available persons"
           data={peoplesMock}
           dataType={DashboardCardDataType.PEOPLES}
         />

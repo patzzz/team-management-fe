@@ -72,3 +72,22 @@ export const projectsList = [
     endDate: "2022-10-15T06:27:59.000+00:00",
   },
 ];
+
+export const personsList = [
+  {
+    id: 2,
+    position: "FRONTEND",
+    firstName: "Andrei",
+    lastName: "Pata",
+    assignedProject: null,
+    isAvailable: false,
+  },
+  {
+    id: 3,
+    position: "FRONTEND",
+    firstName: "Vladut",
+    lastName: "Chisu",
+    assignedProject: null,
+    isAvailable: true,
+  },
+];

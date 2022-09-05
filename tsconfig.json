@@ -24,6 +24,7 @@
       "constants/*": ["./constants/*"],
       "helpers/*": ["./helpers/*"],
       "hooks/*": ["./hooks/*"],
+      "mocks/*": ["./mocks/*"],
       "slices/*": ["./slices/*"],
       "store/*": ["./store/*"],
       "translations/*": ["./translations/*"],
