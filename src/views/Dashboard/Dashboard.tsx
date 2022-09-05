@@ -1,5 +1,4 @@
-// @ts-nocheck
-import React from "react";
+import React, { useEffect } from "react";
 
 // STYLES
 import {
@@ -11,15 +10,12 @@ import {
 // LIBRARIES
 
 // MISC
-import {
-  DashboardCardDataType,
-  PersonPosition,
-  ProjectStatusEnum,
-} from "models/interfaces";
+import { DashboardCardDataType } from "models/interfaces";
+import { useAppDispatch, useAppSelector } from "hooks/reduxHooks";
 
 // REDUX
-// import { getStatistics } from "api/statisticsApi";
-// import { AppDispatch } from "store/store";
+import { getStatistics } from "api/statisticsApi";
+import { IStatistics, statistics } from "slices/statisticsSlice";
 
 // COMPONENTS
 import DashboardCard from "components/DashboardCard/DashboardCard";
@@ -29,35 +25,17 @@ const Dashboard = () => {
   // PROPS
 
   // CONSTANTS USING LIBRARIES
-  // const dispatch = useAppDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();
+  const statisticsData: IStatistics = useAppSelector(statistics);
 
   // CONSTANTS USING HOOKS
 
   // GENERAL CONSTANTS
-  const projectMock = {
-    id: 1,
-    title: "Project title",
-    description: "Project description is important for ......",
-    status: ProjectStatusEnum.IN_PROGRESS,
-    startDate: "2022-09-02T06:27:59.094Z",
-    endDate: "2022-09-02T06:27:59.094Z",
-    deadline: "2022-09-02T06:27:59.094Z",
-  };
-
-  const peopleMock = {
-    id: 1,
-    firstName: "Andrei",
-    lastName: "Pata",
-    position: PersonPosition.FRONTEND,
-  };
-
-  const projectMocks = [projectMock, projectMock, projectMock, projectMock];
-  const peoplesMock = [peopleMock, peopleMock, peopleMock, peopleMock];
 
   // USE EFFECT FUNCTION
-  // useEffect(() => {
-  //   dispatch(getStatistics());
-  // }, []);
+  useEffect(() => {
+    dispatch(getStatistics());
+  }, []);
 
   // REQUEST API FUNCTIONS
 
@@ -70,43 +48,50 @@ const Dashboard = () => {
           title="projects in progress"
           iconType="AccountTree"
           color="#234785"
-          value={2}
+          value={statisticsData.projectsInProgress}
+          key={"status-card-1"}
         />
         <StatusCard
           title="projects pending"
           iconType="AccountTree"
           color="#f7c96c"
-          value={3}
+          value={statisticsData.projectsPending}
+          key={"status-card-2"}
         />
         <StatusCard
           title="projects done"
           iconType="AccountTree"
           color="#1ac944"
-          value={10}
+          value={statisticsData.projectsDone}
+          key={"status-card-3"}
         />
         <StatusCard
           title="available persons"
           iconType="People"
           color="#f4772f"
-          value={4}
+          value={statisticsData.availablePersons.length}
+          key={"status-card-4"}
         />
       </StatusCardsWrapper>
 
       <DashboardCardsWrapper>
         <DashboardCard
           title="Deadlines"
-          data={projectMocks}
+          data={statisticsData.upcomingDeadlines}
           dataType={DashboardCardDataType.PROJECTS}
+          key={"dashboard-card-1"}
         />
         <DashboardCard
           title="Start dates"
-          data={projectMocks}
+          data={statisticsData.upcomingStartDates}
           dataType={DashboardCardDataType.PROJECTS}
+          key={"dashboard-card-2"}
         />
         <DashboardCard
           title="Available persons"
-          data={peoplesMock}
+          data={statisticsData.availablePersons}
           dataType={DashboardCardDataType.PEOPLES}
+          key={"dashboard-card-3"}
         />
       </DashboardCardsWrapper>
     </DashboardContainer>

@@ -9,7 +9,7 @@ export const PersonPreviewCardContainer = styled.div`
   border-radius: 10px;
   box-shadow: 5px 5px 19px -3px rgba(0, 0, 0, 0.1);
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   cursor: pointer;
   gap: 10px;
 `;
@@ -23,4 +23,20 @@ export const PersonPreviewCardStatus = styled.span`
   font-size: 18px;
   text-transform: uppercase;
   color: ${COLORS.secondaryRed};
+`;
+
+export const IconWrapper = styled.div`
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+`;
+
+export const DetailsWrapper = styled.div`
+  background-color: "transparent";
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
 `;

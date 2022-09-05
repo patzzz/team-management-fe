@@ -3,26 +3,31 @@ import { getStatistics } from "api/statisticsApi";
 import { createSlice } from "@reduxjs/toolkit";
 import { IPerson, IProject } from "models/interfaces";
 
-export interface IStatisticsInitialState {
-  noOfProjectsInProgress: number;
-  noOfProjectsPending: number;
-  noOfProjectsDone: number;
+export interface IStatistics {
+  projectsInProgress: number;
+  projectsDone: number;
+  projectsPending: number;
   noOfAvailablePersons: number;
-  projectDeadlines: Array<IProject>;
-  projectStartDates: Array<IProject>;
+  upcomingDeadlines: Array<IProject>;
+  upcomingStartDates: Array<IProject>;
   availablePersons: Array<IPerson>;
+}
+export interface IStatisticsInitialState {
+  statistics: IStatistics;
   isLoading: boolean;
   errorMessage: string;
 }
 
 const initialState: IStatisticsInitialState = {
-  noOfProjectsInProgress: 0,
-  noOfProjectsPending: 0,
-  noOfProjectsDone: 0,
-  noOfAvailablePersons: 0,
-  projectDeadlines: [],
-  projectStartDates: [],
-  availablePersons: [],
+  statistics: {
+    projectsInProgress: 0,
+    projectsDone: 0,
+    projectsPending: 0,
+    noOfAvailablePersons: 0,
+    upcomingDeadlines: [],
+    upcomingStartDates: [],
+    availablePersons: [],
+  },
   isLoading: false,
   errorMessage: "",
 };
@@ -39,6 +44,7 @@ export const statisticsSlice = createSlice({
     builder.addCase(getStatistics.fulfilled, (state, action) => {
       state.isLoading = false;
       console.log("PAYLOAD:", action.payload);
+      state.statistics = action.payload;
     });
     builder.addCase(getStatistics.rejected, (state, action) => {
       state.isLoading = false;
@@ -46,5 +52,9 @@ export const statisticsSlice = createSlice({
     });
   },
 });
+
+export const statistics = (state) => state.statistics.statistics;
+export const isLoading = (state) => state.statistics.isLoading;
+export const errorMessage = (state) => state.statistics.errorMessage;
 
 export default statisticsSlice.reducer;

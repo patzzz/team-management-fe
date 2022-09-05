@@ -2,15 +2,17 @@ import React from "react";
 
 // STYLES
 import {
+  DetailsWrapper,
+  IconWrapper,
   PersonPreviewCardContainer,
   PersonPreviewCardStatus,
   PersonPreviewCardTitle,
 } from "./PersonPreviewCardStyle";
 
 // LIBRARIES
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 // MISC
-import { PersonPosition } from "models/interfaces";
 import { IProps } from "./PersonPreviewCardModel";
 
 // REDUX
@@ -23,9 +25,9 @@ const PersonPreviewCard = (props: IProps) => {
     // id = 0,
     firstName = "",
     lastName = "",
-    position = PersonPosition.FRONTEND,
-    // isAvailable = false,
-    // assignedProject = {},
+    position = "",
+    isAvailable = false,
+    assignedProject = {},
   } = props;
   // CONSTANTS USING LIBRARIES
 
@@ -41,10 +43,15 @@ const PersonPreviewCard = (props: IProps) => {
 
   return (
     <PersonPreviewCardContainer>
-      <PersonPreviewCardTitle>
-        {firstName} {lastName}
-      </PersonPreviewCardTitle>
-      <PersonPreviewCardStatus>{position}</PersonPreviewCardStatus>
+      <IconWrapper>
+        <AccountCircleIcon style={{ fontSize: "50px" }} />
+      </IconWrapper>
+      <DetailsWrapper>
+        <PersonPreviewCardTitle>
+          {firstName} {lastName}
+        </PersonPreviewCardTitle>
+        <PersonPreviewCardStatus>{position}</PersonPreviewCardStatus>
+      </DetailsWrapper>
     </PersonPreviewCardContainer>
   );
 };

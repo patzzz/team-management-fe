@@ -17,6 +17,6 @@ export const PersonsListWrapper = styled.div`
 `;
 
 export const PersonListElement = styled.div`
-  width: 280px;
-  height: 280px;
+  width: 350px;
+  height: 100px;
 `;
