@@ -9,12 +9,13 @@ import * as Icons from "@mui/icons-material";
 import { COLORS } from "constants/variables";
 
 // MISC
+import { IProps } from "./ButtonAtomModel";
 
 // REDUX
 
 // COMPONENTS
 
-const ButtonAtom = (props) => {
+const ButtonAtom = (props: IProps) => {
   // PROPS
   const {
     text = "",
@@ -22,6 +23,7 @@ const ButtonAtom = (props) => {
     hasIcon = false,
     selected = false,
     handleClick,
+    buttonStyle = "primary",
   } = props;
 
   // CONSTANTS USING LIBRARIES
@@ -39,13 +41,17 @@ const ButtonAtom = (props) => {
 
   // @ts-ignore
   return (
-    <ButtonContainer onClick={handleClick} selected={selected}>
+    <ButtonContainer
+      onClick={handleClick}
+      isSelected={selected}
+      buttonStyle={buttonStyle}
+    >
       {hasIcon && (
         <IconWrapper>
           <MuiIcon color={COLORS.secondaryGray} />
         </IconWrapper>
       )}
-      <ButtonText>{text}</ButtonText>
+      <ButtonText buttonStyle={buttonStyle}>{text}</ButtonText>
     </ButtonContainer>
   );
 };
