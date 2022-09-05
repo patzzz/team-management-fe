@@ -12,6 +12,8 @@ import { ModalContentType } from "constants/variables";
 // REDUX
 import { useDispatch, useSelector } from "react-redux";
 import { modalProps, toggleModalState } from "slices/uiSlice";
+import Projects from "views/Projects/Projects";
+import ProjectsContent from "components/Atoms/ModalAtom/Content/ProjectsContent/ProjectsContent";
 
 // COMPONENTS
 
@@ -45,18 +47,24 @@ const ModalAtom = () => {
       case ModalContentType.DASHBOARD:
         return <div>Dashboard</div>;
       case ModalContentType.PROJECTS:
-        return <div>Project</div>;
+        return <ProjectsContent />;
       default:
         return <div>No Content Available</div>;
     }
   };
 
   return (
-    <ModalContainer>
-      <Modal open={modalPropsData?.isVisible || false} onClose={handleClose}>
-        {renderContent()}
-      </Modal>
-    </ModalContainer>
+    <Modal
+      open={modalPropsData?.isVisible || false}
+      onClose={handleClose}
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      {renderContent()}
+    </Modal>
   );
 };
 
