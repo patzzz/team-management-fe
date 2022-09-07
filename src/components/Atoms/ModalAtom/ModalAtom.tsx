@@ -1,21 +1,22 @@
 import React from "react";
 
 // STYLES
-import { ModalContainer } from "./ModalAtomStyle";
+// import { ModalContainer } from "./ModalAtomStyle";
 
 // LIBRARIES
 import { Modal } from "@mui/material";
 
 // MISC
-import { ModalContentType } from "constants/variables";
+import { ModalContentType } from "models/interfaces";
 
 // REDUX
 import { useDispatch, useSelector } from "react-redux";
 import { modalProps, toggleModalState } from "slices/uiSlice";
-import Projects from "views/Projects/Projects";
-import ProjectsContent from "components/Atoms/ModalAtom/Content/ProjectsContent/ProjectsContent";
 
 // COMPONENTS
+import ProjectsContent from "components/Atoms/ModalAtom/Content/ProjectsContent/ProjectsContent";
+import PersonsContent from "./Content/PersonsContent/PersonsContent";
+import AssignedPersonsContent from "./Content/AssignedPersonsContent/AssignedPersonsContent";
 
 const ModalAtom = () => {
   // PROPS
@@ -48,6 +49,10 @@ const ModalAtom = () => {
         return <div>Dashboard</div>;
       case ModalContentType.PROJECTS:
         return <ProjectsContent />;
+      case ModalContentType.PERSONS:
+        return <PersonsContent />;
+      case ModalContentType.ASSIGNED_PERSONS:
+        return <AssignedPersonsContent />;
       default:
         return <div>No Content Available</div>;
     }

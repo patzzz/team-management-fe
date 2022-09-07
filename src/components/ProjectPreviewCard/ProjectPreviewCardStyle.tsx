@@ -2,7 +2,7 @@
 import styled from "styled-components";
 
 // MISC
-import { COLORS } from "constants/variables";
+import { COLORS } from "constants/styleVariables";
 
 export const ProjectPreviewCardContainer = styled.div`
   background-color: ${COLORS.primaryWhite};
@@ -16,6 +16,23 @@ export const ProjectPreviewCardContainer = styled.div`
   cursor: pointer;
   gap: 20px;
   overflow: auto;
+  position: relative;
+  z-index: 9;
+`;
+
+export const ContentWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  width: 100%;
+`;
+
+export const PersonsIconWrapper = styled.div`
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  z-index: 999;
 `;
 export const ProjectPreviewCardTitle = styled.span`
   font-size: 23px;
@@ -29,6 +46,7 @@ export const ProjectPreviewCardStatus = styled.span`
 `;
 export const ProjectPreviewCardDesc = styled.span`
   font-size: 16px;
+  height: 110px;
   display: inline;
   -webkit-line-clamp: 4;
   text-overflow: ellipsis;

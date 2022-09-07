@@ -11,7 +11,7 @@ export interface IProject {
   id: number;
   title: string;
   description: string;
-  status: ProjectStatusEnum;
+  status: string;
   startDate: Date;
   endDate: Date;
   deadline: Date;
@@ -27,17 +27,30 @@ export interface IPerson {
 export enum ProjectStatusEnum {
   IN_PROGRESS = "IN_PROGRESS",
   PENDING = "PENDING",
-  ON_HOLD = "ON_HOLD",
   FINISHED = "FINISHED",
+}
+
+export enum PersonStatus {
+  AVAILABLE = "AVAILABLE",
+  ON_PROJECT = "ON_PROJECT",
 }
 
 export enum DashboardCardDataType {
   PROJECTS,
   PEOPLES,
 }
+
 export enum PersonPosition {
   FRONTEND = "Frontend ",
   BACKEND = "Backend",
   DESIGN = "Ui/Ux Design",
   DEVOPS = "DevOps",
+}
+
+export enum ModalContentType {
+  EMPTY,
+  DASHBOARD,
+  PROJECTS,
+  PERSONS,
+  ASSIGNED_PERSONS,
 }

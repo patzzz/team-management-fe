@@ -1,6 +1,6 @@
 // LIBRARIES
 import styled from "styled-components";
-import { COLORS } from "constants/variables";
+import { COLORS } from "constants/styleVariables";
 
 export const DashboardContainer = styled.div`
   display: flex;
@@ -13,7 +13,6 @@ export const DashboardContainer = styled.div`
 
 export const StatusCardsWrapper = styled.div`
   width: 100%;
-  /* justify-content: space-between; */
   gap: 50px;
   display: flex;
   margin-bottom: 50px;
@@ -21,7 +20,6 @@ export const StatusCardsWrapper = styled.div`
 
 export const DashboardCardsWrapper = styled.div`
   width: 100%;
-  /* justify-content: space-between; */
   gap: 50px;
   display: flex;
 `;

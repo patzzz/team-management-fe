@@ -1,3 +1,5 @@
+// MISC
+import { IProject } from "models/interfaces";
 import { MomentInput } from "moment";
 
 export interface IProps {
@@ -9,4 +11,6 @@ export interface IProps {
     endDate?: MomentInput;
     deadline?: MomentInput;
   };
+  onSelect: (project: any) => void;
+  onSelectPersons: (project: any) => void;
 }

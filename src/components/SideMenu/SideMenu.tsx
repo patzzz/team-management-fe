@@ -66,7 +66,9 @@ const SideMenu = () => {
           handleClick={() => handleNavigate("/persons")}
         />
       </SelectionsWrapper>
-      <LogoutButtonWrapper>Log out</LogoutButtonWrapper>
+      <LogoutButtonWrapper onClick={() => handleNavigate("/")}>
+        Log out
+      </LogoutButtonWrapper>
     </SideMenuContainer>
   );
 };

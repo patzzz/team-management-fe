@@ -6,7 +6,7 @@ import { ButtonContainer, ButtonText, IconWrapper } from "./ButtonAtomStyle";
 
 // LIBRARIES
 import * as Icons from "@mui/icons-material";
-import { COLORS } from "constants/variables";
+import { COLORS } from "constants/styleVariables";
 
 // MISC
 import { IProps } from "./ButtonAtomModel";

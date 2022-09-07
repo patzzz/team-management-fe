@@ -1,12 +1,24 @@
 // LIBRARIES
 import { createSlice } from "@reduxjs/toolkit";
 
+// MISC
+import {
+  IPerson,
+  IProject,
+  PersonStatus,
+  ProjectStatusEnum,
+} from "models/interfaces";
+
 export interface IUIInitialState {
   isLoading: Boolean;
   errorMessage: String;
   modalProps: {
     isVisible: Boolean;
     content: String;
+    editMode: Boolean;
+    project: IProject;
+    person: IPerson;
+    tabSelection: ProjectStatusEnum | PersonStatus;
   };
 }
 
@@ -16,6 +28,10 @@ const initialState: IUIInitialState = {
   modalProps: {
     isVisible: false,
     content: "dashboard",
+    editMode: false,
+    project: null,
+    person: null,
+    tabSelection: ProjectStatusEnum.PENDING,
   },
 };
 

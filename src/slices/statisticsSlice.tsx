@@ -1,7 +1,11 @@
 // LIBRARIES
-import { getStatistics } from "api/statisticsApi";
 import { createSlice } from "@reduxjs/toolkit";
+
+// MISC
 import { IPerson, IProject } from "models/interfaces";
+
+// API
+import { getStatistics } from "api/statisticsApi";
 
 export interface IStatistics {
   projectsInProgress: number;
@@ -43,7 +47,6 @@ export const statisticsSlice = createSlice({
     });
     builder.addCase(getStatistics.fulfilled, (state, action) => {
       state.isLoading = false;
-      console.log("PAYLOAD:", action.payload);
       state.statistics = action.payload;
     });
     builder.addCase(getStatistics.rejected, (state, action) => {

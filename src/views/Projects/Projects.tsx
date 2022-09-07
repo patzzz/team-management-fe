@@ -1,85 +1,134 @@
-import React from "react";
+// @ts-nocheck
+import React, { useEffect, useState } from "react";
 
 // STYLES
-import "./ProjectsStyle.tsx";
-import * as Styled from "views/Projects/ProjectsStyle";
+import {
+  ProjectsContainer,
+  ProjectsListElement,
+  ProjectsListWrapper,
+} from "./ProjectsStyle";
 
 // LIBRARIES
 
 // MISC
-import { projectsList } from "mocks/projectsMock";
+import { ModalContentType, ProjectStatusEnum } from "models/interfaces";
 
 // REDUX
-import { useDispatch } from "react-redux";
+import { toggleModalState } from "slices/uiSlice";
+import { useAppDispatch, useAppSelector } from "hooks/reduxHooks";
+import { getProjectsByStatus } from "api/projectApi";
+import { projects } from "slices/projectSlice";
 
 // COMPONENTS
 import ProjectPreviewCard from "components/ProjectPreviewCard/ProjectPreviewCard";
 import ModalAtom from "components/Atoms/ModalAtom/ModalAtom";
-import ButtonAtom from "components/Atoms/ButtonAtom/ButtonAtom";
-import { toggleModalState } from "slices/uiSlice";
+import Tabs, { ITabSelection } from "components/Tabs/Tabs";
 
 const Projects = () => {
   // PROPS
 
   // CONSTANTS USING LIBRARIES
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
+  const projectsData = useAppSelector(projects);
 
   // CONSTANTS USING HOOKS
+  const [selectedTab, setSelectedTab] = useState<ProjectStatusEnum>(
+    ProjectStatusEnum.IN_PROGRESS
+  );
 
   // GENERAL CONSTANTS
+  const selections: ITabSelection = [
+    {
+      title: "In progress",
+      selection: ProjectStatusEnum.IN_PROGRESS,
+    },
+    {
+      title: "Pending",
+      selection: ProjectStatusEnum.PENDING,
+    },
+    {
+      title: "DONE",
+      selection: ProjectStatusEnum.DONE,
+    },
+  ];
 
   // USE EFFECT FUNCTION
+  useEffect(() => {
+    dispatch(getProjectsByStatus(selectedTab));
+    // eslint-disable-next-line
+  }, []);
+
+  useEffect(() => {
+    dispatch(getProjectsByStatus(selectedTab));
+    // eslint-disable-next-line
+  }, [selectedTab]);
 
   // REQUEST API FUNCTIONS
 
   // HANDLERS FUNCTIONS
   const handleFilterClick = (event) => {
-    // console.log("event", event);
+    setSelectedTab(event);
   };
+
   const handleOpenModal = () => {
-    dispatch(toggleModalState({ isVisible: true, content: "projects" }));
+    dispatch(
+      toggleModalState({
+        isVisible: true,
+        content: ModalContentType.PROJECTS,
+        editMode: false,
+      })
+    );
+  };
+
+  const handleSelectProject = (project: any) => {
+    dispatch(
+      toggleModalState({
+        isVisible: true,
+        content: ModalContentType.PROJECTS,
+        editMode: true,
+        project,
+        tabSelection: selectedTab,
+      })
+    );
+  };
+
+  const handleOpenPersonsModal = (project: any) => {
+    dispatch(
+      toggleModalState({
+        isVisible: true,
+        content: ModalContentType.ASSIGNED_PERSONS,
+        editMode: true,
+        project,
+        tabSelection: selectedTab,
+      })
+    );
   };
 
   return (
-    <Styled.ProjectsContainer>
-      <Styled.ProjectsFilterContainer>
-        <Styled.ProjectsFilterWrapper>
-          <ButtonAtom
-            text="Test"
-            buttonStyle={"secondary"}
-            handleClick={() => handleFilterClick("event1")}
-          />
-          <ButtonAtom
-            text="Test"
-            buttonStyle={"secondary"}
-            handleClick={() => handleFilterClick("event2")}
-          />
-          <ButtonAtom
-            text="Test"
-            buttonStyle={"secondary"}
-            handleClick={() => handleFilterClick("event3")}
-          />
-        </Styled.ProjectsFilterWrapper>
-        <ButtonAtom
-          text="Add Project"
-          buttonStyle={"secondary"}
-          handleClick={handleOpenModal}
-        />
-      </Styled.ProjectsFilterContainer>
-      <Styled.ProjectsListWrapper>
-        {projectsList?.map((project, index) => {
-          return (
-            <Styled.ProjectsListElement>
-              <ProjectPreviewCard
-                project={project}
-                key={`project-list--${index}`}
-              />
-            </Styled.ProjectsListElement>
-          );
-        })}
-      </Styled.ProjectsListWrapper>
+    <ProjectsContainer>
+      <Tabs
+        selectedTab={selectedTab}
+        selections={selections}
+        handleSelectTab={handleFilterClick}
+        handleOpenModal={handleOpenModal}
+      />
+      <ProjectsListWrapper>
+        {projectsData?.length > 0 &&
+          projectsData?.map((project, index) => {
+            return (
+              <ProjectsListElement>
+                <ProjectPreviewCard
+                  project={project}
+                  onSelect={handleSelectProject}
+                  onSelectPersons={handleOpenPersonsModal}
+                  key={`project-list--${index}`}
+                />
+              </ProjectsListElement>
+            );
+          })}
+      </ProjectsListWrapper>
       <ModalAtom />
-    </Styled.ProjectsContainer>
+    </ProjectsContainer>
   );
 };
 

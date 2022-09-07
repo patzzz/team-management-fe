@@ -1,9 +1,9 @@
 // LIBRARIES
 import styled from "styled-components";
 import TextField from "@mui/material/TextField";
-import { COLORS } from "constants/variables";
+import { COLORS } from "constants/styleVariables";
 
-export const ProjectsContentContainer = styled.div`
+export const PersonsContentContainer = styled.div`
   width: 600px;
   height: 750px;
   background-color: ${COLORS.primaryWhite};
@@ -14,12 +14,13 @@ export const ProjectsContentContainer = styled.div`
   border-radius: 10px;
   box-shadow: 5px 5px 19px -3px rgba(0, 0, 0, 0.1);
 `;
-export const ProjectsContentInputContainer = styled.div`
+export const PersonsContentInputContainer = styled.div`
   display: flex;
   flex-direction: column;
 `;
 export const InputWrapper = styled.div`
   display: flex;
+  height: auto;
   flex-direction: column;
 `;
 export const DateWrapper = styled.div`
@@ -59,4 +60,12 @@ export const InputContainer = styled(TextField)`
       border-width: 0;
     }
   }
+`;
+
+export const ButtonsContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  /* gap: 20px */
+  justify-content: center;
 `;

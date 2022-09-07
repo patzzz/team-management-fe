@@ -1,11 +1,11 @@
 // LIBRARIES
 import styled from "styled-components";
-import { COLORS } from "constants/variables";
+import { COLORS } from "constants/styleVariables";
 
 export const DashboardCardContainer = styled.div`
   background-color: ${COLORS.primaryWhite};
   width: 500px;
-  height: auto;
+  min-height: 570px;
   max-height: 570px;
   overflow-y: auto;
   border-radius: 15px;
