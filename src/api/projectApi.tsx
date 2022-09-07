@@ -4,7 +4,6 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 // MISC
 import { REST } from "config/axiosConfig";
 import { ProjectStatusEnum } from "models/interfaces";
-import { IProjectForm } from "components/Atoms/ModalAtom/Content/ProjectsContent/ProjectsContentModel";
 
 export const createProject = createAsyncThunk(
   "project/createProject",

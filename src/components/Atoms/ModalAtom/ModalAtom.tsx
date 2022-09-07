@@ -1,7 +1,6 @@
 import React from "react";
 
 // STYLES
-// import { ModalContainer } from "./ModalAtomStyle";
 
 // LIBRARIES
 import { Modal } from "@mui/material";
@@ -10,8 +9,8 @@ import { Modal } from "@mui/material";
 import { ModalContentType } from "models/interfaces";
 
 // REDUX
-import { useDispatch, useSelector } from "react-redux";
 import { modalProps, toggleModalState } from "slices/uiSlice";
+import { useAppDispatch, useAppSelector } from "hooks/reduxHooks";
 
 // COMPONENTS
 import ProjectsContent from "components/Atoms/ModalAtom/Content/ProjectsContent/ProjectsContent";
@@ -22,8 +21,8 @@ const ModalAtom = () => {
   // PROPS
 
   // CONSTANTS USING LIBRARIES
-  const dispatch = useDispatch();
-  const modalPropsData = useSelector(modalProps);
+  const dispatch = useAppDispatch();
+  const modalPropsData = useAppSelector(modalProps);
 
   // CONSTANTS USING HOOKS
 
@@ -45,8 +44,6 @@ const ModalAtom = () => {
 
   const renderContent = () => {
     switch (modalPropsData?.content) {
-      case ModalContentType.DASHBOARD:
-        return <div>Dashboard</div>;
       case ModalContentType.PROJECTS:
         return <ProjectsContent />;
       case ModalContentType.PERSONS:

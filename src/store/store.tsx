@@ -6,7 +6,6 @@ import { persistReducer } from "redux-persist";
 import thunk from "redux-thunk";
 
 // REDUX
-import calendarSlice from "slices/calendarSlice";
 import projectSlice from "slices/projectSlice";
 import sessionSlice from "slices/sessionSlice";
 import statisticsSlice from "slices/statisticsSlice";
@@ -14,7 +13,6 @@ import uiSlice from "slices/uiSlice";
 import personSlice from "slices/personSlice";
 
 const reducers = combineReducers({
-  calendar: calendarSlice,
   project: projectSlice,
   session: sessionSlice,
   statistics: statisticsSlice,

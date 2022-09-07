@@ -89,8 +89,6 @@ const ProjectsContent = () => {
     });
   };
 
-  console.log(modalPropsData.tabSelection)
-
   const handleDeleteProject = () => {
     dispatch(deleteProject(modalPropsData.project?.id)).then(() => {
       dispatch(getProjectsByStatus(modalPropsData.tabSelection));
