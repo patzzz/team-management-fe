@@ -1,6 +1,6 @@
 // LIBRARIES
 import styled from "styled-components";
-import { COLORS } from "constants/variables";
+import { COLORS } from "constants/styleVariables";
 
 export const DashboardContainer = styled.div`
   display: flex;

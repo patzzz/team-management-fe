@@ -2,7 +2,7 @@
 import styled from "styled-components";
 
 // MISC
-import { COLORS } from "constants/variables";
+import { COLORS } from "constants/styleVariables";
 
 export const SideMenuContainer = styled.div`
   padding: 0px 50px;

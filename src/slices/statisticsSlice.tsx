@@ -47,7 +47,6 @@ export const statisticsSlice = createSlice({
     });
     builder.addCase(getStatistics.fulfilled, (state, action) => {
       state.isLoading = false;
-      console.log("PAYLOAD:", action.payload);
       state.statistics = action.payload;
     });
     builder.addCase(getStatistics.rejected, (state, action) => {

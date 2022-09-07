@@ -1,5 +1,5 @@
 // @ts-nocheck
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 // STYLES
 import {
@@ -11,17 +11,18 @@ import {
 // LIBRARIES
 
 // MISC
-import { IPerson, PersonStatus } from "models/interfaces";
+import { IPerson, ModalContentType, PersonStatus } from "models/interfaces";
 
 // REDUX
 import { useAppDispatch, useAppSelector } from "hooks/reduxHooks";
-import { personsList } from "slices/personSlice";
 import { getPersonsByAvailabilityStatus } from "api/personsApi";
+import { toggleModalState } from "slices/uiSlice";
+import { personsList } from "slices/personSlice";
 
 // COMPONENTS
 import PersonPreviewCard from "components/PersonPreviewCard/PersonPreviewCard";
 import Tabs, { ITabSelection } from "components/Tabs/Tabs";
-import { useState } from "react";
+import ModalAtom from "components/Atoms/ModalAtom/ModalAtom";
 
 const Persons = () => {
   // PROPS
@@ -66,7 +67,26 @@ const Persons = () => {
   };
 
   const handleOpenModal = () => {
-    dispatch(toggleModalState({ isVisible: true, content: "persons" }));
+    dispatch(
+      toggleModalState({
+        isVisible: true,
+        content: ModalContentType.PERSONS,
+        editMode: false,
+        tabSelection: selectedTab,
+      })
+    );
+  };
+
+  const handleSelectPerson = (person: IPerson) => {
+    dispatch(
+      toggleModalState({
+        isVisible: true,
+        content: ModalContentType.PERSONS,
+        editMode: true,
+        person,
+        tabSelection: selectedTab,
+      })
+    );
   };
 
   return (
@@ -81,10 +101,16 @@ const Persons = () => {
         {personsData?.length > 0 &&
           personsData?.map((person, index) => (
             <PersonListElement>
-              <PersonPreviewCard {...person} key={`person-card--${index}`} />
+              <PersonPreviewCard
+                person={person}
+                key={`person-card--${index}`}
+                onSelect={handleSelectPerson}
+              />
             </PersonListElement>
           ))}
       </PersonsListWrapper>
+
+      <ModalAtom />
     </PersonsContainer>
   );
 };

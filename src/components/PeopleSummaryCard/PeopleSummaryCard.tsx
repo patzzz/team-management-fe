@@ -22,7 +22,7 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 const PeopleSummaryCard = (props) => {
   // PROPS
-  const { people = {} } = props;
+  const { people = {}, hasDelimiter = true } = props;
   // CONSTANTS USING LIBRARIES
 
   // CONSTANTS USING HOOKS
@@ -48,7 +48,7 @@ const PeopleSummaryCard = (props) => {
           <Position>{people.position}</Position>
         </DetailsWrapper>
       </PeopleSummaryCardContainer>
-      <Delimiter />
+      {hasDelimiter && <Delimiter />}
     </>
   );
 };

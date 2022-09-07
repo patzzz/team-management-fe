@@ -21,16 +21,7 @@ import { IProps } from "./PersonPreviewCardModel";
 
 const PersonPreviewCard = (props: IProps) => {
   // PROPS
-  const {
-    // id = 0,
-    firstName = "",
-    lastName = "",
-    position = "",
-    // eslint-disable-next-line
-    isAvailable = false,
-    // eslint-disable-next-line
-    assignedProject = {},
-  } = props;
+  const { person, onSelect } = props;
   // CONSTANTS USING LIBRARIES
 
   // CONSTANTS USING HOOKS
@@ -44,15 +35,15 @@ const PersonPreviewCard = (props: IProps) => {
   // HANDLERS FUNCTIONS
 
   return (
-    <PersonPreviewCardContainer>
+    <PersonPreviewCardContainer onClick={() => onSelect(person)}>
       <IconWrapper>
         <AccountCircleIcon style={{ fontSize: "50px" }} />
       </IconWrapper>
       <DetailsWrapper>
         <PersonPreviewCardTitle>
-          {firstName} {lastName}
+          {person.firstName} {person.lastName}
         </PersonPreviewCardTitle>
-        <PersonPreviewCardStatus>{position}</PersonPreviewCardStatus>
+        <PersonPreviewCardStatus>{person.position}</PersonPreviewCardStatus>
       </DetailsWrapper>
     </PersonPreviewCardContainer>
   );

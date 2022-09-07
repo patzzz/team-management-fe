@@ -1,55 +1,106 @@
 // @ts-nocheck
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 // STYLES
 import {
+  ButtonsContainer,
   DateWrapper,
   InputContainer,
   InputWrapper,
   ProjectsContentContainer,
   ProjectsContentInputContainer,
   TitleLabel,
-} from "./ProjectsContentStyled";
+} from "./ProjectsContentStyle";
 
 // LIBRARIES
 import { useNavigate } from "react-router-dom";
 import { DatePicker } from "@material-ui/pickers";
 import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
+import { InputLabel } from "@mui/material";
 
 // MISC
 import { IProjectForm } from "./ProjectsContentModel";
+import { ModalContentType, ProjectStatusEnum } from "models/interfaces";
 
 // REDUX
+import { useAppDispatch, useAppSelector } from "hooks/reduxHooks";
+import {
+  createProject,
+  deleteProject,
+  editProject,
+  getProjectsByStatus,
+} from "api/projectApi";
+import { modalProps, toggleModalState } from "slices/uiSlice";
 
 // COMPONENTS
 import ButtonAtom from "components/Atoms/ButtonAtom/ButtonAtom";
-import { InputLabel } from "@mui/material";
 
 const ProjectsContent = () => {
   // PROPS
 
   // CONSTANTS USING LIBRARIES
-  // const dispatch = useAppDispatch();
-  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const modalPropsData = useAppSelector(modalProps);
 
   // CONSTANTS USING HOOKS
   const [projectForm, setProjectForm] = useState<IProjectForm>({
     title: "",
     description: "",
-    status: "",
     deadline: "",
-    endDate: "",
     startDate: "",
+    endDate: "",
+    status: "",
   });
 
   // GENERAL CONSTANTS
 
   // USE EFFECT FUNCTION
+  useEffect(() => {
+    if (modalPropsData.editMode) {
+      setProjectForm({
+        title: modalPropsData.project.title,
+        description: modalPropsData.project.description,
+        deadline: modalPropsData.project.deadline,
+        startDate: modalPropsData.project.startDate,
+        endDate: modalPropsData.project.endDate,
+        id: modalPropsData.project.id,
+        status: modalPropsData.project.status,
+      });
+    }
+  }, [modalPropsData]);
 
   // REQUEST API FUNCTIONS
-  const handleCreateProject = () => {
-    navigate("/dashboard");
+  const handleCreateOrEditProject = () => {
+    const action = modalPropsData.editMode ? editProject : createProject;
+    dispatch(
+      action({
+        project: projectForm,
+        projectId: modalPropsData.project?.id || null,
+      })
+    ).then(() => {
+      dispatch(getProjectsByStatus(modalPropsData.tabSelection));
+      dispatch(
+        toggleModalState({
+          isVisible: false,
+          content: ModalContentType.PROJECTS,
+          editMode: false,
+        })
+      );
+    });
+  };
+
+  const handleDeleteProject = () => {
+    dispatch(deleteProject(modalPropsData.project?.id)).then(() => {
+      dispatch(getProjectsByStatus(modalPropsData.tabSelection));
+      dispatch(
+        toggleModalState({
+          isVisible: false,
+          content: ModalContentType.PROJECTS,
+          editMode: false,
+        })
+      );
+    });
   };
 
   // HANDLERS FUNCTIONS
@@ -59,7 +110,8 @@ const ProjectsContent = () => {
 
   return (
     <ProjectsContentContainer>
-      <TitleLabel>Create a project</TitleLabel>
+      {modalPropsData.editMode && <TitleLabel>Edit project</TitleLabel>}
+      {!modalPropsData.editMode && <TitleLabel>Create a project</TitleLabel>}
       <ProjectsContentInputContainer>
         <InputWrapper>
           <InputLabel>Title</InputLabel>
@@ -67,17 +119,6 @@ const ProjectsContent = () => {
             name="title"
             fullWidth
             value={projectForm.title}
-            onChange={(event) =>
-              handleChange(event.target.value, event.target.name)
-            }
-          />
-        </InputWrapper>
-        <InputWrapper>
-          <InputLabel>Status</InputLabel>
-          <InputContainer
-            name="status"
-            fullWidth
-            value={projectForm.status}
             onChange={(event) =>
               handleChange(event.target.value, event.target.name)
             }
@@ -94,6 +135,19 @@ const ProjectsContent = () => {
             }
           />
         </InputWrapper>
+        {modalPropsData.editMode && (
+          <InputWrapper>
+            <InputLabel>Status</InputLabel>
+            <InputContainer
+              name="status"
+              fullWidth
+              value={projectForm.status}
+              onChange={(event) =>
+                handleChange(event.target.value, event.target.name)
+              }
+            />
+          </InputWrapper>
+        )}
 
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
           <DateWrapper>
@@ -103,27 +157,37 @@ const ProjectsContent = () => {
               onChange={(event) => handleChange(event, "startDate")}
               animateYearScrolling
             />
-
-            <DatePicker
-              label="End date"
-              value={projectForm.endDate}
-              onChange={(event) => handleChange(event, "endDate")}
-              animateYearScrolling
-            />
             <DatePicker
               label="Deadline"
               value={projectForm.deadline}
               onChange={(event) => handleChange(event, "deadline")}
               animateYearScrolling
             />
+            {modalPropsData.editMode && (
+              <DatePicker
+                label="End date"
+                value={projectForm.endDate}
+                onChange={(event) => handleChange(event, "endDate")}
+                animateYearScrolling
+              />
+            )}
           </DateWrapper>
         </MuiPickersUtilsProvider>
       </ProjectsContentInputContainer>
-      <ButtonAtom
-        text={"Create"}
-        handleClick={handleCreateProject}
-        buttonStyle={"secondary"}
-      />
+      <ButtonsContainer>
+        <ButtonAtom
+          text={modalPropsData.editMode ? "Edit" : "Create"}
+          handleClick={handleCreateOrEditProject}
+          buttonStyle={"secondary"}
+        />
+        {modalPropsData.editMode && (
+          <ButtonAtom
+            text={"Delete"}
+            handleClick={handleDeleteProject}
+            buttonStyle={"secondary"}
+          />
+        )}
+      </ButtonsContainer>
     </ProjectsContentContainer>
   );
 };

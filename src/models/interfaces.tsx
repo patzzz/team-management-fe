@@ -46,3 +46,11 @@ export enum PersonPosition {
   DESIGN = "Ui/Ux Design",
   DEVOPS = "DevOps",
 }
+
+export enum ModalContentType {
+  EMPTY,
+  DASHBOARD,
+  PROJECTS,
+  PERSONS,
+  ASSIGNED_PERSONS,
+}

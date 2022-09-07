@@ -1,10 +1,9 @@
+// @ts-nocheck
 import React, { useEffect, useState } from "react";
 
 // STYLES
 import {
   ProjectsContainer,
-  ProjectsFilterContainer,
-  ProjectsFilterWrapper,
   ProjectsListElement,
   ProjectsListWrapper,
 } from "./ProjectsStyle";
@@ -12,7 +11,7 @@ import {
 // LIBRARIES
 
 // MISC
-import { ProjectStatusEnum } from "models/interfaces";
+import { ModalContentType, ProjectStatusEnum } from "models/interfaces";
 
 // REDUX
 import { toggleModalState } from "slices/uiSlice";
@@ -23,7 +22,7 @@ import { projects } from "slices/projectSlice";
 // COMPONENTS
 import ProjectPreviewCard from "components/ProjectPreviewCard/ProjectPreviewCard";
 import ModalAtom from "components/Atoms/ModalAtom/ModalAtom";
-import ButtonAtom from "components/Atoms/ButtonAtom/ButtonAtom";
+import Tabs, { ITabSelection } from "components/Tabs/Tabs";
 
 const Projects = () => {
   // PROPS
@@ -38,6 +37,20 @@ const Projects = () => {
   );
 
   // GENERAL CONSTANTS
+  const selections: ITabSelection = [
+    {
+      title: "In progress",
+      selection: ProjectStatusEnum.IN_PROGRESS,
+    },
+    {
+      title: "Pending",
+      selection: ProjectStatusEnum.PENDING,
+    },
+    {
+      title: "DONE",
+      selection: ProjectStatusEnum.DONE,
+    },
+  ];
 
   // USE EFFECT FUNCTION
   useEffect(() => {
@@ -58,40 +71,47 @@ const Projects = () => {
   };
 
   const handleOpenModal = () => {
-    dispatch(toggleModalState({ isVisible: true, content: "projects" }));
+    dispatch(
+      toggleModalState({
+        isVisible: true,
+        content: ModalContentType.PROJECTS,
+        editMode: false,
+      })
+    );
+  };
+
+  const handleSelectProject = (project: any) => {
+    dispatch(
+      toggleModalState({
+        isVisible: true,
+        content: ModalContentType.PROJECTS,
+        editMode: true,
+        project,
+        tabSelection: selectedTab,
+      })
+    );
+  };
+
+  const handleOpenPersonsModal = (project: any) => {
+    dispatch(
+      toggleModalState({
+        isVisible: true,
+        content: ModalContentType.ASSIGNED_PERSONS,
+        editMode: true,
+        project,
+        tabSelection: selectedTab,
+      })
+    );
   };
 
   return (
     <ProjectsContainer>
-      <ProjectsFilterContainer>
-        <ProjectsFilterWrapper>
-          <ButtonAtom
-            text="In progress"
-            buttonStyle={"secondary"}
-            selected={
-              selectedTab === ProjectStatusEnum.IN_PROGRESS ? true : false
-            }
-            handleClick={() => handleFilterClick(ProjectStatusEnum.IN_PROGRESS)}
-          />
-          <ButtonAtom
-            text="Pending"
-            buttonStyle={"secondary"}
-            selected={selectedTab === ProjectStatusEnum.PENDING ? true : false}
-            handleClick={() => handleFilterClick(ProjectStatusEnum.PENDING)}
-          />
-          <ButtonAtom
-            text="Done"
-            buttonStyle={"secondary"}
-            selected={selectedTab === ProjectStatusEnum.FINISHED ? true : false}
-            handleClick={() => handleFilterClick(ProjectStatusEnum.FINISHED)}
-          />
-        </ProjectsFilterWrapper>
-        <ButtonAtom
-          text="Add Project"
-          buttonStyle={"secondary"}
-          handleClick={handleOpenModal}
-        />
-      </ProjectsFilterContainer>
+      <Tabs
+        selectedTab={selectedTab}
+        selections={selections}
+        handleSelectTab={handleFilterClick}
+        handleOpenModal={handleOpenModal}
+      />
       <ProjectsListWrapper>
         {projectsData?.length > 0 &&
           projectsData?.map((project, index) => {
@@ -99,6 +119,8 @@ const Projects = () => {
               <ProjectsListElement>
                 <ProjectPreviewCard
                   project={project}
+                  onSelect={handleSelectProject}
+                  onSelectPersons={handleOpenPersonsModal}
                   key={`project-list--${index}`}
                 />
               </ProjectsListElement>

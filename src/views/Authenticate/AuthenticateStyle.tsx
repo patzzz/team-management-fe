@@ -5,7 +5,7 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 
 // MISC
-import { COLORS } from "constants/variables";
+import { COLORS } from "constants/styleVariables";
 
 export const AuthenticateContainer = styled.div`
   display: flex;

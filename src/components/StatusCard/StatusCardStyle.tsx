@@ -1,6 +1,6 @@
 // LIBRARIES
 import styled, { css } from "styled-components";
-import { COLORS } from "constants/variables";
+import { COLORS } from "constants/styleVariables";
 
 export const StatusCardContainer = styled.div(
   ({ color }) => css`

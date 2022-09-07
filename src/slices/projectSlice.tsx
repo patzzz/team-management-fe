@@ -2,14 +2,20 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 // MISC
-import { IProject } from "models/interfaces";
+import { IPerson, IProject } from "models/interfaces";
 
 // API
-import { createProject, getProject, getProjectsByStatus } from "api/projectApi";
+import {
+  createProject,
+  getProject,
+  getProjectsByStatus,
+  getProjectTeam,
+} from "api/projectApi";
 
 export interface IProjectInitialState {
   projects: Array<IProject>;
   project: IProject;
+  projectTeam: Array<IPerson>;
   isLoading: boolean;
   errorMessage: string;
 }
@@ -25,6 +31,7 @@ const initialState: IProjectInitialState = {
     endDate: new Date(),
     deadline: new Date(),
   },
+  projectTeam: [],
   isLoading: false,
   errorMessage: "",
 };
@@ -74,9 +81,24 @@ export const projectSlice = createSlice({
       state.isLoading = false;
       state.errorMessage = action.error.message;
     });
+
+    // GET PRJECT TEAM
+    builder.addCase(getProjectTeam.pending, (state, action) => {
+      state.isLoading = true;
+      state.errorMessage = "";
+    });
+    builder.addCase(getProjectTeam.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.projectTeam = action.payload;
+    });
+    builder.addCase(getProjectTeam.rejected, (state, action) => {
+      state.isLoading = false;
+      state.errorMessage = action.error.message;
+    });
   },
 });
 
 export const projects = (state) => state.project.projects;
+export const projectTeam = (state) => state.project.projectTeam;
 
 export default projectSlice.reducer;

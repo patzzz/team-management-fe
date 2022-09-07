@@ -2,7 +2,7 @@
 import styled from "styled-components";
 
 // MISC
-import { COLORS } from "constants/variables";
+import { COLORS } from "constants/styleVariables";
 
 export const ProjectsContainer = styled.div`
   display: flex;

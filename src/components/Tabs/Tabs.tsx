@@ -7,7 +7,7 @@ import { TabsContainer, TabsWrapper } from "./TabsStyle";
 // LIBRARIES
 
 // MISC
-import { ProjectStatusEnum } from "models/interfaces";
+import { PersonStatus, ProjectStatusEnum } from "models/interfaces";
 
 // REDUX
 
@@ -15,7 +15,7 @@ import { ProjectStatusEnum } from "models/interfaces";
 import ButtonAtom from "components/Atoms/ButtonAtom/ButtonAtom";
 
 export interface IProps {
-  selectedTab: ProjectStatusEnum;
+  selectedTab: ProjectStatusEnum | PersonStatus;
   selections: Array<ITabSelection>;
   handleSelectTab: (event: Event) => {};
   handleOpenModal: (event: Event) => {};

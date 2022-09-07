@@ -3,13 +3,12 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 
 // MISC
 import { REST } from "config/axiosConfig";
-import { IPerson } from "models/interfaces";
 
 export const createPerson = createAsyncThunk(
   "person/createPerson",
-  async (person: IPerson, { rejectWithValue }) => {
+  async (data: any, { rejectWithValue }) => {
     try {
-      const response = await REST.post("/person", person);
+      const response = await REST.post("person/create", data.person);
       return response.data;
     } catch (err) {
       return rejectWithValue(err.response.data);
@@ -31,9 +30,12 @@ export const getPerson = createAsyncThunk(
 
 export const editPerson = createAsyncThunk(
   "person/editPerson",
-  async (person: IPerson, { rejectWithValue }) => {
+  async (data: any, { rejectWithValue }) => {
     try {
-      const response = await REST.put(`/person?personId=${person.id}`, person);
+      const response = await REST.put(
+        `/person/update?personId=${data.personId}`,
+        data.person
+      );
       return response.data;
     } catch (err) {
       return rejectWithValue(err.response.data);
@@ -41,11 +43,11 @@ export const editPerson = createAsyncThunk(
   }
 );
 
-export const deleteProject = createAsyncThunk(
-  "project/deleteProject",
+export const deletePerson = createAsyncThunk(
+  "person/deletePerson",
   async (personId: number, { rejectWithValue }) => {
     try {
-      const response = await REST.delete(`/person?personId=${personId}`);
+      const response = await REST.delete(`person/delete?personId=${personId}`);
       return response.data;
     } catch (err) {
       return rejectWithValue(err.response.data);
@@ -57,7 +59,7 @@ export const getAllPersons = createAsyncThunk(
   "person/getAllPersons",
   async (_, { rejectWithValue }) => {
     try {
-      const response = await REST.get("/person/all");
+      const response = await REST.get("person/all");
       return response.data;
     } catch (err) {
       return rejectWithValue(err.response.data);
@@ -70,7 +72,7 @@ export const getPersonProjects = createAsyncThunk(
   async (personId: number, { rejectWithValue }) => {
     try {
       const response = await REST.get(
-        `/person/getAssignedProjects?personId=${personId}`
+        `person/getAssignedProjects?personId=${personId}`
       );
       return response.data;
     } catch (err) {
@@ -81,10 +83,10 @@ export const getPersonProjects = createAsyncThunk(
 
 export const assignOrUnassignPerson = createAsyncThunk(
   "person/assignOrUnassignPerson",
-  async (personId: number, { rejectWithValue }) => {
+  async (data: any, { rejectWithValue }) => {
     try {
-      const response = await REST.get(
-        `/person/getAssignedProjects?personId=${personId}`
+      const response = await REST.post(
+        `project/assignOrUnassignPerson?personId=${data.personId}&projectId=${data.projectId}`
       );
       return response.data;
     } catch (err) {
@@ -98,7 +100,7 @@ export const getPersonsByAvailabilityStatus = createAsyncThunk(
   async (status: string, { rejectWithValue }) => {
     try {
       const response = await REST.get(
-        `/person/getPersonsByAvailabilityStatus?status=${status}`
+        `person/getPersonsByAvailabilityStatus?status=${status}`
       );
       return response.data;
     } catch (err) {

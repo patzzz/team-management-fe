@@ -31,7 +31,6 @@ export const personSlice = createSlice({
     });
     builder.addCase(getAllPersons.fulfilled, (state, action) => {
       state.isLoading = false;
-      console.log("action.payload", action.payload);
       state.personsList = action.payload;
     });
     builder.addCase(getAllPersons.rejected, (state, action) => {

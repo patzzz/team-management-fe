@@ -1,6 +1,6 @@
 // LIBRARIES
 import styled from "styled-components";
-import { COLORS } from "constants/variables";
+import { COLORS } from "constants/styleVariables";
 
 export const PeopleSummaryCardContainer = styled.div`
   background-color: "transparent";
@@ -43,7 +43,7 @@ export const Description = styled.p`
 `;
 
 export const Position = styled.div`
-  width: 120px;
+  width: 190px;
   height: 3 0px;
   border-radius: 3px;
   display: flex;

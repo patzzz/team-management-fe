@@ -3,13 +3,14 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 
 // MISC
 import { REST } from "config/axiosConfig";
-import { IProject, ProjectStatusEnum } from "models/interfaces";
+import { ProjectStatusEnum } from "models/interfaces";
+import { IProjectForm } from "components/Atoms/ModalAtom/Content/ProjectsContent/ProjectsContentModel";
 
 export const createProject = createAsyncThunk(
   "project/createProject",
-  async (project: IProject, { rejectWithValue }) => {
+  async (data: any, { rejectWithValue }) => {
     try {
-      const response = await REST.post("/project", project);
+      const response = await REST.post("/project", data.project);
       return response.data;
     } catch (err) {
       return rejectWithValue(err.response.data);
@@ -31,11 +32,11 @@ export const getProject = createAsyncThunk(
 
 export const editProject = createAsyncThunk(
   "project/editProject",
-  async (project: IProject, { rejectWithValue }) => {
+  async (data: any, { rejectWithValue }) => {
     try {
       const response = await REST.put(
-        `/project?projectId=${project.id}`,
-        project
+        `/project?projectId=${data.projectId}`,
+        data.project
       );
       return response.data;
     } catch (err) {

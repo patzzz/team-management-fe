@@ -6,7 +6,7 @@ import { ButtonContainer, ButtonText, IconWrapper } from "./ButtonAtomStyle";
 
 // LIBRARIES
 import * as Icons from "@mui/icons-material";
-import { COLORS } from "constants/variables";
+import { COLORS } from "constants/styleVariables";
 
 // MISC
 import { IProps } from "./ButtonAtomModel";
@@ -25,10 +25,6 @@ const ButtonAtom = (props: IProps) => {
     handleClick,
     buttonStyle = "primary",
   } = props;
-
-  console.log("SELECTED:", selected);
-  console.log("text:", text);
-  console.log("________");
 
   // CONSTANTS USING LIBRARIES
 

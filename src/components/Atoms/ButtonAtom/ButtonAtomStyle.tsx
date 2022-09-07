@@ -4,7 +4,7 @@ import styled, { css } from "styled-components";
 import Button from "@mui/material/Button";
 
 // MISC
-import { COLORS } from "constants/variables";
+import { COLORS } from "constants/styleVariables";
 
 export const ButtonContainer = styled(Button)(
   ({ isSelected, buttonStyle }) => css`

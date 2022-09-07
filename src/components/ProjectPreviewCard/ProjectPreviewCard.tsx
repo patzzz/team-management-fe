@@ -5,6 +5,8 @@ import React from "react";
 // LIBRARIES
 import moment from "moment/moment";
 import {
+  ContentWrapper,
+  PersonsIconWrapper,
   ProjectPreviewCardContainer,
   ProjectPreviewCardDateContainer,
   ProjectPreviewCardDateText,
@@ -12,6 +14,7 @@ import {
   ProjectPreviewCardDesc,
   ProjectPreviewCardTitle,
 } from "./ProjectPreviewCardStyle";
+import GroupIcon from "@mui/icons-material/Group";
 
 // MISC
 import { IProps } from "components/ProjectPreviewCard/ProjectPreviewCardModel";
@@ -31,6 +34,8 @@ const ProjectPreviewCard = (props: IProps) => {
       endDate: "",
       deadline: "",
     },
+    onSelect,
+    onSelectPersons,
   } = props;
   // CONSTANTS USING LIBRARIES
 
@@ -46,21 +51,27 @@ const ProjectPreviewCard = (props: IProps) => {
 
   return (
     <ProjectPreviewCardContainer>
-      <ProjectPreviewCardTitle>{project.title}</ProjectPreviewCardTitle>
-      {/* <ProjectPreviewCardStatus>{project.status}</ProjectPreviewCardStatus> */}
-      <ProjectPreviewCardDesc>{project.description}</ProjectPreviewCardDesc>
-      <ProjectPreviewCardDateContainer>
-        <ProjectPreviewCardDateText>
-          Start: {moment(project.startDate).format("DD/MM/YYYY")}
-        </ProjectPreviewCardDateText>
-        <ProjectPreviewCardDateText>
-          End: {moment(project.endDate).format("DD/MM/YYYY")}
-        </ProjectPreviewCardDateText>
-      </ProjectPreviewCardDateContainer>
+      <PersonsIconWrapper onClick={() => onSelectPersons(project)}>
+        <GroupIcon />
+      </PersonsIconWrapper>
+      <ContentWrapper onClick={() => onSelect(project)}>
+        <ProjectPreviewCardTitle>{project.title}</ProjectPreviewCardTitle>
+        {/* <ProjectPreviewCardStatus>{project.status}</ProjectPreviewCardStatus> */}
+        <ProjectPreviewCardDesc>{project.description}</ProjectPreviewCardDesc>
+        <ProjectPreviewCardDateContainer>
+          <ProjectPreviewCardDateText>
+            Start: {moment(project.startDate).format("DD/MM/YYYY")}
+          </ProjectPreviewCardDateText>
+          <ProjectPreviewCardDateText>
+            {project.endDate &&
+              `End: ${moment(project.endDate).format("DD/MM/YYYY")}`}
+          </ProjectPreviewCardDateText>
+        </ProjectPreviewCardDateContainer>
 
-      <ProjectPreviewCardDeadline>
-        Deadline: {moment(project.deadline).format("DD/MM/YYYY")}
-      </ProjectPreviewCardDeadline>
+        <ProjectPreviewCardDeadline>
+          Deadline: {moment(project.deadline).format("DD/MM/YYYY")}
+        </ProjectPreviewCardDeadline>
+      </ContentWrapper>
     </ProjectPreviewCardContainer>
   );
 };

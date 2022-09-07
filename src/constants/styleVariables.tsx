@@ -7,9 +7,3 @@ export const COLORS = {
   primaryRed: "",
   violet: "#6a62d3",
 };
-
-export const ModalContentType = {
-  EMPTY: "empty",
-  DASHBOARD: "dashboard",
-  PROJECTS: "projects",
-};
