@@ -22,6 +22,7 @@ export interface IPerson {
   firstName: string;
   lastName: string;
   position: PersonPosition;
+  assignedProject?: IProject;
 }
 
 export enum ProjectStatusEnum {

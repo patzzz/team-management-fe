@@ -40,3 +40,17 @@ export const DetailsWrapper = styled.div`
   width: 100%;
   justify-content: center;
 `;
+
+export const Project = styled.div`
+  width: 190px;
+  height: 3 0px;
+  border-radius: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f3f3f4;
+  color: ${COLORS.secondaryRed};
+  font-weight: 800;
+  font-size: 14px;
+  margin-top: 5px;
+`;

@@ -7,6 +7,7 @@ import {
   PersonPreviewCardContainer,
   PersonPreviewCardStatus,
   PersonPreviewCardTitle,
+  Project,
 } from "./PersonPreviewCardStyle";
 
 // LIBRARIES
@@ -14,6 +15,7 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 // MISC
 import { IProps } from "./PersonPreviewCardModel";
+import { People } from "@mui/icons-material";
 
 // REDUX
 
@@ -33,6 +35,7 @@ const PersonPreviewCard = (props: IProps) => {
   // REQUEST API FUNCTIONS
 
   // HANDLERS FUNCTIONS
+  console.log("person", person);
 
   return (
     <PersonPreviewCardContainer onClick={() => onSelect(person)}>
@@ -44,6 +47,9 @@ const PersonPreviewCard = (props: IProps) => {
           {person.firstName} {person.lastName}
         </PersonPreviewCardTitle>
         <PersonPreviewCardStatus>{person.position}</PersonPreviewCardStatus>
+        {person.assignedProject?.title && (
+          <Project>{person.assignedProject.title}</Project>
+        )}
       </DetailsWrapper>
     </PersonPreviewCardContainer>
   );
