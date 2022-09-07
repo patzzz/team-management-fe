@@ -76,6 +76,7 @@ const Projects = () => {
         isVisible: true,
         content: ModalContentType.PROJECTS,
         editMode: false,
+        tabSelection: selectedTab,
       })
     );
   };

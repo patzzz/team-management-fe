@@ -15,7 +15,6 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 // MISC
 import { IProps } from "./PersonPreviewCardModel";
-import { People } from "@mui/icons-material";
 
 // REDUX
 
@@ -35,7 +34,6 @@ const PersonPreviewCard = (props: IProps) => {
   // REQUEST API FUNCTIONS
 
   // HANDLERS FUNCTIONS
-  console.log("person", person);
 
   return (
     <PersonPreviewCardContainer onClick={() => onSelect(person)}>

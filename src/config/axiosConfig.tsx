@@ -2,7 +2,7 @@ import axios from "axios";
 
 const baseURL = process.env.REACT_APP_SERVER_URL
   ? process.env.REACT_APP_SERVER_URL
-  : "http://localhost:8080/manager/api/";
+  : "http://192.168.0.121:8080/manager/api/";
 
 // const accessToken = lscache.get('accessToken')
 

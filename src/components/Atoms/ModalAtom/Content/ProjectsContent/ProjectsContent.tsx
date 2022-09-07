@@ -13,7 +13,6 @@ import {
 } from "./ProjectsContentStyle";
 
 // LIBRARIES
-import { useNavigate } from "react-router-dom";
 import { DatePicker } from "@material-ui/pickers";
 import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
@@ -21,7 +20,7 @@ import { InputLabel } from "@mui/material";
 
 // MISC
 import { IProjectForm } from "./ProjectsContentModel";
-import { ModalContentType, ProjectStatusEnum } from "models/interfaces";
+import { ModalContentType } from "models/interfaces";
 
 // REDUX
 import { useAppDispatch, useAppSelector } from "hooks/reduxHooks";
@@ -89,6 +88,8 @@ const ProjectsContent = () => {
       );
     });
   };
+
+  console.log(modalPropsData.tabSelection)
 
   const handleDeleteProject = () => {
     dispatch(deleteProject(modalPropsData.project?.id)).then(() => {
